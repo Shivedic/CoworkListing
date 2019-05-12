@@ -25,6 +25,7 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.example.adapter.FilterAdapter;
 import com.example.adapter.PropertyAdapterLatest;
+import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 import com.example.item.ItemType;
 import com.example.util.Constant;
@@ -42,7 +43,7 @@ import java.util.ArrayList;
  */
 public class HomeMoreActivity extends AppCompatActivity {
 
-    ArrayList<ItemProperty> mListItem;
+    ArrayList<ItemCowork> mListItem;
     public RecyclerView recyclerView;
     PropertyAdapterLatest adapter;
     private ProgressBar progressBar;
@@ -56,10 +57,13 @@ public class HomeMoreActivity extends AppCompatActivity {
     FilterAdapter filterAdapter;
     String string_very, string_fur, final_value_min, final_value_max, string_sort;
     int save_sort = 1;
+    String callURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        callURL = intent.getStringExtra("callUrl");
         setContentView(R.layout.activity_category_item);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -90,8 +94,10 @@ public class HomeMoreActivity extends AppCompatActivity {
         ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(HomeMoreActivity.this, R.dimen.item_offset);
         recyclerView.addItemDecoration(itemDecoration);
         string_sort = "DESC";
-        if (JsonUtils.isNetworkAvailable(HomeMoreActivity.this)) {
+        if (JsonUtils.isNetworkAvailable(HomeMoreActivity.this) && callURL.equals("Popular")) {
             new getCategory().execute(Constant.MOST_POPULAR_URL);
+        } else if (JsonUtils.isNetworkAvailable(HomeMoreActivity.this) && callURL.equals("Latest")) {
+            new getLatest().execute(Constant.LATEST_URL);
         }
 
     }
@@ -123,19 +129,77 @@ public class HomeMoreActivity extends AppCompatActivity {
                     JSONObject objJson;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         objJson = jsonArray.getJSONObject(i);
-                        ItemProperty objItem = new ItemProperty();
-                        objItem.setPId(objJson.getString(Constant.PROPERTY_ID));
-                        objItem.setPropertyName(objJson.getString(Constant.PROPERTY_TITLE));
-                        objItem.setPropertyThumbnailB(objJson.getString(Constant.PROPERTY_IMAGE));
-                        objItem.setRateAvg(objJson.getString(Constant.PROPERTY_RATE));
-                        objItem.setPropertyPrice(objJson.getString(Constant.PROPERTY_PRICE));
-                        objItem.setPropertyBed(objJson.getString(Constant.PROPERTY_BED));
-                        objItem.setPropertyBath(objJson.getString(Constant.PROPERTY_BATH));
-                        objItem.setPropertyArea(objJson.getString(Constant.PROPERTY_AREA));
-                        objItem.setPropertyAddress(objJson.getString(Constant.PROPERTY_ADDRESS));
-                        objItem.setPropertyPurpose(objJson.getString(Constant.PROPERTY_PURPOSE));
-                        objItem.setpropertyTotalRate(objJson.getString(Constant.PROPERTY_TOTAL_RATE));
-                        if (i % 2 == 0) {
+                        ItemCowork objItem = new ItemCowork();
+                        objItem.setPId(objJson.getString(Constant.PLACE_ID));
+                        objItem.setPropertyName(objJson.getString(Constant.PLACE_TITLE));
+                        objItem.setPropertyThumbnailB(objJson.getString(Constant.PLACE_IMAGE));
+                        objItem.setRateAvg(objJson.getString(Constant.PLACE_RATE));
+                        objItem.setPropertyPrice("1001");
+                        //objItem.setPropertyBed(objJson.getString(Constant.PROPERTY_BED));
+                        //objItem.setPropertyBath(objJson.getString(Constant.PROPERTY_BATH));
+                        objItem.setPropertyStartTime(objJson.getString(Constant.PLACE_TIME_START));
+                        objItem.setPropertyEndTime(objJson.getString(Constant.PLACE_TIME_END));
+                        objItem.setPropertyWeekStart(objJson.getString(Constant.PLACE_WDSTART));
+                        objItem.setPropertyWeekEnd(objJson.getString(Constant.PLACE_WDEND));
+                        objItem.setPropertyArea("1000");
+                        objItem.setPropertyAddress(objJson.getString(Constant.PLACE_ADDRESS));
+                        objItem.setPropertyPurpose(objJson.getString(Constant.PLACE_PURPOSE));
+                        objItem.setpropertyTotalRate(objJson.getString(Constant.PLACE_TOTAL_RATE));if (i % 2 == 0) {
+                            objItem.setRight(true);
+                        }
+                        mListItem.add(objItem);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                displayData();
+            }
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private class getLatest extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            showProgress(true);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return JsonUtils.getJSONString(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            showProgress(false);
+            if (null == result || result.length() == 0) {
+                lyt_not_found.setVisibility(View.VISIBLE);
+            } else {
+                try {
+                    JSONObject mainJson = new JSONObject(result);
+                    JSONArray jsonArray = mainJson.getJSONArray(Constant.ARRAY_NAME);
+                    JSONObject objJson;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        objJson = jsonArray.getJSONObject(i);
+                        ItemCowork objItem = new ItemCowork();
+                        objItem.setPId(objJson.getString(Constant.PLACE_ID));
+                        objItem.setPropertyName(objJson.getString(Constant.PLACE_TITLE));
+                        objItem.setPropertyThumbnailB(objJson.getString(Constant.PLACE_IMAGE));
+                        objItem.setRateAvg("4");
+                        objItem.setPropertyPrice("1001");
+                        //objItem.setPropertyBed(objJson.getString(Constant.PROPERTY_BED));
+                        //objItem.setPropertyBath(objJson.getString(Constant.PROPERTY_BATH));
+                        objItem.setPropertyStartTime(objJson.getString(Constant.PLACE_TIME_START));
+                        objItem.setPropertyEndTime(objJson.getString(Constant.PLACE_TIME_END));
+                        objItem.setPropertyWeekStart(objJson.getString(Constant.PLACE_WDSTART));
+                        objItem.setPropertyWeekEnd(objJson.getString(Constant.PLACE_WDEND));
+                        objItem.setPropertyArea("1000");
+                        objItem.setPropertyAddress(objJson.getString(Constant.PLACE_ADDRESS));
+                        objItem.setPropertyPurpose(objJson.getString(Constant.PLACE_PURPOSE));
+                        objItem.setpropertyTotalRate("36");if (i % 2 == 0) {
                             objItem.setRight(true);
                         }
                         mListItem.add(objItem);

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.bumptech.glide.Glide;
 import com.example.util.JsonUtils;
 import com.example.util.TouchImageView;
 import com.squareup.picasso.Picasso;
@@ -36,7 +37,8 @@ public class FloorImageActivity extends AppCompatActivity {
         image_floor = intent.getStringExtra("ImageF");
 
         imageView = findViewById(R.id.iv_wall_details);
-        Picasso.get().load(image_floor).placeholder(R.drawable.header_top_logo).into(imageView);
+        //Picasso.get().load(image_floor).placeholder(R.drawable.header_top_logo).into(imageView);
+        Glide.with(FloorImageActivity.this).load("http://www.viaviweb.in/envato/cc/real_estate_app_new_demo/images/floor_plan/40670_house-design.jpg").into(imageView);
 
     }
 

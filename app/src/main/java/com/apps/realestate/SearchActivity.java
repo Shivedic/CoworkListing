@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.example.adapter.PropertyAdapterLatest;
+import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 import com.example.util.Constant;
 import com.example.util.ItemOffsetDecoration;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity {
 
     ArrayList<ItemProperty> mListItem;
+    ArrayList<ItemCowork> mListCoItem;
     public RecyclerView recyclerView;
     PropertyAdapterLatest adapter;
     private ProgressBar progressBar;
@@ -131,7 +133,9 @@ public class SearchActivity extends AppCompatActivity {
 
 
     private void displayData() {
-        adapter = new PropertyAdapterLatest(SearchActivity.this, mListItem);
+        //adapter = new PropertyAdapterLatest(SearchActivity.this, mListItem);
+        adapter = new PropertyAdapterLatest(SearchActivity.this, mListCoItem);
+
         recyclerView.setAdapter(adapter);
 
         if (adapter.getItemCount() == 0) {

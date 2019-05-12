@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.apps.realestate.PropertyDetailsActivity;
 import com.apps.realestate.R;
 import com.example.db.DatabaseHelper;
+import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 import com.example.util.Constant;
 import com.example.util.JsonUtils;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 
 public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<ItemProperty> dataList;
+    private ArrayList<ItemCowork> dataList;
     private Context mContext;
     private InterstitialAd mInterstitial;
     private int AD_COUNT = 0;
@@ -40,7 +41,7 @@ public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.Vie
     private final int VIEW_ITEM = 1;
     private final int VIEW_PROG = 0;
 
-    public PropertyAdapterLatest(Context context, ArrayList<ItemProperty> dataList) {
+    public PropertyAdapterLatest(Context context, ArrayList<ItemCowork> dataList) {
         this.dataList = dataList;
         this.mContext = context;
         databaseHelper = new DatabaseHelper(mContext);
@@ -66,13 +67,13 @@ public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
         if (viewHolder.getItemViewType() == VIEW_ITEM) {
             final ItemRowHolder holder = (ItemRowHolder) viewHolder;
-            final ItemProperty singleItem = dataList.get(position);
+            final ItemCowork singleItem = dataList.get(position);
             holder.text.setText(singleItem.getPropertyName());
             holder.textPrice.setText(mContext.getString(R.string.currency_symbol)+singleItem.getPropertyPrice());
             holder.textAddress.setText(singleItem.getPropertyAddress());
-            holder.textBed.setText(singleItem.getPropertyBed()+" "+mContext.getString(R.string.bed_bath));
-            holder.textBath.setText(singleItem.getPropertyBath()+" "+mContext.getString(R.string.bed_bath2));
-            holder.textSquare.setText(singleItem.getPropertyArea());
+            holder.textBed.setText(singleItem.getPropertyStartTime()+" - "+singleItem.getPropertyEndTime());
+            holder.textBath.setText(singleItem.getPropertyWeekStart()+" - "+singleItem.getPropertyWeekEnd());
+           // holder.textSquare.setText("1000");
             holder.ratingView.setRating(Float.parseFloat(singleItem.getRateAvg()));
             Picasso.get().load(singleItem.getPropertyThumbnailB()).placeholder(R.drawable.header_top_logo).into(holder.image);
             holder.textTotalRate.setText("("+singleItem.getpropertyTotalRate()+")");
@@ -96,8 +97,10 @@ public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.Vie
                         fav.put(DatabaseHelper.KEY_TITLE, singleItem.getPropertyName());
                         fav.put(DatabaseHelper.KEY_IMAGE, singleItem.getPropertyThumbnailB());
                         fav.put(DatabaseHelper.KEY_RATE, singleItem.getRateAvg());
-                        fav.put(DatabaseHelper.KEY_BED, singleItem.getPropertyBed());
-                        fav.put(DatabaseHelper.KEY_BATH, singleItem.getPropertyBath());
+                        fav.put(DatabaseHelper.KEY_STARTT, singleItem.getPropertyStartTime());
+                        fav.put(DatabaseHelper.KEY_ENDT, singleItem.getPropertyEndTime());
+                        fav.put(DatabaseHelper.KEY_WEEKS, singleItem.getPropertyWeekEnd());
+                        fav.put(DatabaseHelper.KEY_WEEKE, singleItem.getPropertyWeekEnd());
                         fav.put(DatabaseHelper.KEY_ADDRESS, singleItem.getPropertyAddress());
                         fav.put(DatabaseHelper.KEY_AREA, singleItem.getPropertyArea());
                         fav.put(DatabaseHelper.KEY_PRICE, singleItem.getPropertyPrice());
@@ -176,13 +179,13 @@ public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.Vie
             }
         }else {
             final SecondViewHolder holder = (SecondViewHolder) viewHolder;
-            final ItemProperty singleItem = dataList.get(position);
+            final ItemCowork singleItem = dataList.get(position);
             holder.text.setText(singleItem.getPropertyName());
             holder.textPrice.setText(mContext.getString(R.string.currency_symbol)+singleItem.getPropertyPrice());
             holder.textAddress.setText(singleItem.getPropertyAddress());
-            holder.textBed.setText(singleItem.getPropertyBed()+" "+mContext.getString(R.string.bed_bath));
-            holder.textBath.setText(singleItem.getPropertyBath()+" "+mContext.getString(R.string.bed_bath2));
-            holder.textSquare.setText(singleItem.getPropertyArea());
+            holder.textBed.setText(singleItem.getPropertyStartTime() + " - " + singleItem.getPropertyEndTime());
+            holder.textBath.setText(singleItem.getPropertyWeekStart() + " - " + singleItem.getPropertyWeekEnd());
+//            holder.textSquare.setText(singleItem.getPropertyArea());
             holder.ratingView.setRating(Float.parseFloat(singleItem.getRateAvg()));
             holder.ratingView.setRating(Float.parseFloat(singleItem.getRateAvg()));
             Picasso.get().load(singleItem.getPropertyThumbnailB()).placeholder(R.drawable.header_top_logo).into(holder.image);
@@ -207,8 +210,10 @@ public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.Vie
                         fav.put(DatabaseHelper.KEY_TITLE, singleItem.getPropertyName());
                         fav.put(DatabaseHelper.KEY_IMAGE, singleItem.getPropertyThumbnailB());
                         fav.put(DatabaseHelper.KEY_RATE, singleItem.getRateAvg());
-                        fav.put(DatabaseHelper.KEY_BED, singleItem.getPropertyBed());
-                        fav.put(DatabaseHelper.KEY_BATH, singleItem.getPropertyBath());
+                        fav.put(DatabaseHelper.KEY_STARTT, singleItem.getPropertyStartTime());
+                        fav.put(DatabaseHelper.KEY_ENDT, singleItem.getPropertyEndTime());
+                        fav.put(DatabaseHelper.KEY_WEEKS, singleItem.getPropertyWeekStart());
+                        fav.put(DatabaseHelper.KEY_WEEKE, singleItem.getPropertyWeekEnd());
                         fav.put(DatabaseHelper.KEY_ADDRESS, singleItem.getPropertyAddress());
                         fav.put(DatabaseHelper.KEY_AREA, singleItem.getPropertyArea());
                         fav.put(DatabaseHelper.KEY_PRICE, singleItem.getPropertyPrice());
@@ -316,7 +321,7 @@ public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.Vie
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             ratingView = itemView.findViewById(R.id.ratingView);
             textBath=itemView.findViewById(R.id.textBath);
-            textSquare=itemView.findViewById(R.id.textSquare);
+            //textSquare=itemView.findViewById(R.id.textSquare);
             ic_home_fav=itemView.findViewById(R.id.ic_home_fav);
             textTotalRate=itemView.findViewById(R.id.textAvg);
         }
@@ -339,7 +344,7 @@ public class PropertyAdapterLatest extends RecyclerView.Adapter<RecyclerView.Vie
             lyt_parent = itemView.findViewById(R.id.rootLayout);
             ratingView = itemView.findViewById(R.id.ratingView);
             textBath=itemView.findViewById(R.id.textBath);
-            textSquare=itemView.findViewById(R.id.textSquare);
+            //textSquare=itemView.findViewById(R.id.textSquare);
             ic_home_fav=itemView.findViewById(R.id.ic_home_fav);
             textTotalRate=itemView.findViewById(R.id.textAvg);
         }

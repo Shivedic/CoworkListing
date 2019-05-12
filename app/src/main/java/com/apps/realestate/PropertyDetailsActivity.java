@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -127,6 +128,7 @@ public class PropertyDetailsActivity extends AppCompatActivity {
         }
 
         if (JsonUtils.isNetworkAvailable(PropertyDetailsActivity.this)) {
+            //Log.d("myTag", "calling url")
             new getProperty().execute(Constant.SINGLE_PROPERTY_URL + Id);
         } else {
             showToast(getString(R.string.conne_msg1));
@@ -434,8 +436,8 @@ public class PropertyDetailsActivity extends AppCompatActivity {
                     fav.put(DatabaseHelper.KEY_TITLE, objBean.getPropertyName());
                     fav.put(DatabaseHelper.KEY_IMAGE, objBean.getPropertyThumbnailB());
                     fav.put(DatabaseHelper.KEY_RATE, objBean.getRateAvg());
-                    fav.put(DatabaseHelper.KEY_BED, objBean.getPropertyBed());
-                    fav.put(DatabaseHelper.KEY_BATH, objBean.getPropertyBath());
+                   // fav.put(DatabaseHelper.KEY_BED, objBean.getPropertyBed());
+                   // fav.put(DatabaseHelper.KEY_BATH, objBean.getPropertyBath());
                     fav.put(DatabaseHelper.KEY_ADDRESS, objBean.getPropertyAddress());
                     fav.put(DatabaseHelper.KEY_AREA, objBean.getPropertyArea());
                     fav.put(DatabaseHelper.KEY_PRICE, objBean.getPropertyPrice());

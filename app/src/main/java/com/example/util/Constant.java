@@ -15,11 +15,12 @@ public class Constant implements Serializable {
 
 
     public static String SERVER_URL = BuildConfig.server_url;
-    public static String SERVER_URL2 = "http://www.shivedic.in/gharbaar/";
+    public static String SERVER_URL2 = "http://shivedic.in/cokarma/";
 
     public static final String IMAGE_PATH = SERVER_URL + "images/";
 
     public static final String LATEST_URL = SERVER_URL2 + "api.php?latest";
+    public static final String FEATURE_URL = SERVER_URL2 + "api.php?feature";
 
     //public static final String ALL_PROPERTIES_URL = SERVER_URL + "api.php?all_properties";
     public static final String ALL_PROPERTIES_URL = SERVER_URL2 + "api.php?all_properties";
@@ -42,11 +43,11 @@ public class Constant implements Serializable {
 
     public static final String SINGLE_PROPERTY_URL = SERVER_URL + "api.php?property_id=";
 
-    public static final String HOME_URL = SERVER_URL + "api.php?home";
+    public static final String HOME_URL = SERVER_URL2 + "api.php?home";
 
     public static final String RATING_URL = SERVER_URL + "api_rating.php?property_id=";
 
-    public static final String MOST_POPULAR_URL = SERVER_URL + "api.php?popular_properties";
+    public static final String MOST_POPULAR_URL = SERVER_URL2 + "api.php?popular";
 
     public static final String CONTACT_US_URL = SERVER_URL + "api_contact.php?name=";
 
@@ -59,6 +60,10 @@ public class Constant implements Serializable {
     public static final String DISTANCE_URL = SERVER_URL + "api.php?properties_distance&user_lat=";
 
     public static final String PRICE_URL = SERVER_URL + "api.php?properties_min_max_price=";
+
+    public static final String FLEXIDP_INFO_URL = SERVER_URL2 + "/JSON/getflexidpinfo.php";
+
+    public static final String propdetails_URL = SERVER_URL2 + "/JSON/property_detail.php";
 
     public static final String ARRAY_NAME = "REAL_ESTATE_APP";
 
@@ -83,8 +88,54 @@ public class Constant implements Serializable {
     public static final String PROPERTY_FUR= "furnishing";
     public static final String PROPERTY_VERY= "verified";
 
+    public static final String PLACE_ID = "p_id";
+    public static final String PLACE_TITLE = "place_name";
+    public static final String PLACE_WDSTART = "pl_wd_start";
+    public static final String PLACE_WDEND = "pl_wd_end";
+    public static final String PLACE_TIME_START = "pl_timing_start";
+    public static final String PLACE_TIME_END = "pl_timing_end";
+    public static final String PLACE_DESC = "pl_overview";
+    public static final String PLACE_OWNER_MSG = "pl_owner_msg";
+    public static final String PLACE_OFFER = "pl_offers";
+    public static final String PLACE_PHONE = "place_phone";
+    public static final String PLACE_ADDRESS = "place_address";
+    public static final String PLACE_LOCALITY = "place_localty";
+    public static final String PLACE_CITY = "place_city";
+    public static final String PLACE_STATE = "place_state";
+    public static final String PLACE_LATITUDE = "place_map_latitude";
+    public static final String PLACE_LONGITUDE = "place_map_longitude";
+    public static final String PLACE_IMAGE = "place_thumbnail_b";
+    //public static final String PROPERTY_AMENITIES = "property_amenities";
+    //public static final String PROPERTY_PRICE = "property_price";
+    public static final String PLACE_RATE = "rate_avg";
+    public static final String PLACE_PURPOSE = "type_name";
+    public static final String PLACE_FLOOR_PLAN = "place_floor_plan";
+    public static final String PLACE_TOTAL_RATE= "total_rate";
+    //public static final String PROPERTY_FUR= "furnishing";
+    //public static final String PROPERTY_VERY= "verified";
+
+
     public static final String TYPE_ID = "tid";
     public static final String TYPE_NAME = "type_name";
+
+    public static final String DP_TYPE = "tid";
+    public static final String DP_DUR = "duration";
+    public static final String DP_PRICE_INR = "price_inr";
+    public static final String DP_PRICE_USD = "price_usd";
+
+
+    public static final String PACK_ID = "p_id";
+    public static final String PACK_NAME = "pack_name";
+    public static final String PACK_DESC = "pack_description";
+    public static final String PACK_DURATION = "pack_duration";
+    public static final String PACK_CATEGORY = "pack_category";
+    public static final String PACK_SEATS = "pack_seats";
+    public static final String PACK_QUANTITY = "pack_qty";
+    public static final String PACK_STARTTIME = "pack_start_time";
+    public static final String PACK_ENDTIME = "pack_end_time";
+    public static final String PACK_PRICE = "pack_price";
+
+
 
     public static final String APP_NAME = "app_name";
     public static final String APP_IMAGE = "app_logo";
@@ -124,5 +175,4 @@ public class Constant implements Serializable {
     public static ArrayList<ItemProperty> mList=new ArrayList<>();
     public static String USER_LATITUDE ;
     public static String USER_LONGITUDE;
-
 }

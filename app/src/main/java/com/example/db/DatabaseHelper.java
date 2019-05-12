@@ -6,13 +6,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 
 import java.util.ArrayList;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "realEstate.db";
     public static final String TABLE_FAVOURITE_NAME = "favourite";
 
@@ -21,8 +22,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String KEY_IMAGE = "image";
     public static final String KEY_RATE = "rate";
     public static final String KEY_PRICE = "price";
-    public static final String KEY_BED = "bed";
-    public static final String KEY_BATH = "bath";
+    public static final String KEY_STARTT = "start_time";
+    public static final String KEY_ENDT = "end_time";
+    public static final String KEY_WEEKS = "weekstart";
+    public static final String KEY_WEEKE = "weekend";
     public static final String KEY_AREA = "area";
     public static final String KEY_ADDRESS = "address";
     public static final String KEY_PURPOSE = "purpose";
@@ -40,8 +43,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + KEY_IMAGE + " TEXT,"
                 + KEY_RATE + " TEXT,"
                 + KEY_PRICE + " TEXT,"
-                + KEY_BED + " TEXT,"
-                + KEY_BATH + " TEXT,"
+                + KEY_STARTT + " TEXT,"
+                + KEY_ENDT + " TEXT,"
+                + KEY_WEEKS + " TEXT,"
+                + KEY_WEEKE + " TEXT,"
                 + KEY_AREA + " TEXT,"
                 + KEY_ADDRESS + " TEXT,"
                 + KEY_PURPOSE + " TEXT"
@@ -80,22 +85,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert(TableName, s1, contentvalues);
     }
 
-    public ArrayList<ItemProperty> getFavourite() {
-        ArrayList<ItemProperty> chapterList = new ArrayList<>();
+    public ArrayList<ItemCowork> getFavourite() {
+        ArrayList<ItemCowork> chapterList = new ArrayList<>();
         String selectQuery = "SELECT *  FROM "
                 + TABLE_FAVOURITE_NAME;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
         if (cursor.moveToFirst()) {
             do {
-                ItemProperty contact = new ItemProperty();
+                ItemCowork contact = new ItemCowork();
                 contact.setPId(cursor.getString(cursor.getColumnIndexOrThrow(KEY_ID)));
                 contact.setPropertyName(cursor.getString(cursor.getColumnIndexOrThrow(KEY_TITLE)));
                 contact.setPropertyThumbnailB(cursor.getString(cursor.getColumnIndexOrThrow(KEY_IMAGE)));
                 contact.setRateAvg(cursor.getString(cursor.getColumnIndexOrThrow(KEY_RATE)));
                 contact.setPropertyPrice(cursor.getString(cursor.getColumnIndexOrThrow(KEY_PRICE)));
-                contact.setPropertyBed(cursor.getString(cursor.getColumnIndexOrThrow(KEY_BED)));
-                contact.setPropertyBath(cursor.getString(cursor.getColumnIndexOrThrow(KEY_BATH)));
+                contact.setPropertyStartTime(cursor.getString(cursor.getColumnIndexOrThrow(KEY_STARTT)));
+                contact.setPropertyEndTime(cursor.getString(cursor.getColumnIndexOrThrow(KEY_ENDT)));
+                contact.setPropertyWeekStart(cursor.getString(cursor.getColumnIndexOrThrow(KEY_WEEKS)));
+                contact.setPropertyWeekEnd(cursor.getString(cursor.getColumnIndexOrThrow(KEY_WEEKE)));
                 contact.setPropertyArea(cursor.getString(cursor.getColumnIndexOrThrow(KEY_AREA)));
                 contact.setPropertyAddress(cursor.getString(cursor.getColumnIndexOrThrow(KEY_ADDRESS)));
                 contact.setPropertyPurpose(cursor.getString(cursor.getColumnIndexOrThrow(KEY_PURPOSE)));

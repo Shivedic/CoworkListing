@@ -40,6 +40,7 @@ import com.example.fragment.HomeFragment;
 import com.example.fragment.LatestFragment;
 import com.example.fragment.MyPropertiesFragment;
 import com.example.fragment.SettingFragment;
+import com.example.item.DailyPass;
 import com.example.item.ItemAbout;
 import com.example.item.ItemType;
 import com.example.util.Constant;
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private GoogleApiClient googleApiClient;
     private final static int REQUEST_CHECK_SETTINGS_GPS = 0x1;
     private final static int REQUEST_ID_MULTIPLE_PERMISSIONS = 0x2;
+    public static ArrayList<DailyPass> mListFlexiDp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,20 +117,26 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mPropertyName = new ArrayList<>();
         mListItem = new ArrayList<>();
 
+        if (JsonUtils.isNetworkAvailable(MainActivity.this)) {
+            new getFlexiInfo().execute(Constant.FLEXIDP_INFO_URL);
+        }
+
         HomeFragment homeFragment = new HomeFragment();
         fragmentManager.beginTransaction().replace(R.id.Container, homeFragment).commit();
 
         spaceNavigationView = findViewById(R.id.space);
         spaceNavigationView.initWithSaveInstanceState(savedInstanceState);
         spaceNavigationView.addSpaceItem(new SpaceItem(getString(R.string.menu_home), R.drawable.ic_home));
-        spaceNavigationView.addSpaceItem(new SpaceItem(getString(R.string.menu_latest), R.drawable.ic_latest));
+        spaceNavigationView.addSpaceItem(new SpaceItem(getString(R.string.menu_feature), R.drawable.ic_latest));
         spaceNavigationView.addSpaceItem(new SpaceItem(getString(R.string.menu_favourite), R.drawable.ic_favourite));
         spaceNavigationView.addSpaceItem(new SpaceItem(getString(R.string.menu_setting), R.drawable.ic_setting));
 
         spaceNavigationView.setSpaceOnClickListener(new SpaceOnClickListener() {
             @Override
             public void onCentreButtonClick() {
-                Intent intent = new Intent(MainActivity.this, AddPropertiesActivity.class);
+                //Intent intent = new Intent(MainActivity.this, AddPropertiesActivity.class);
+                Intent intent = new Intent(MainActivity.this, DpDashboardActivity.class);
+
                 startActivity(intent);
             }
 
@@ -142,10 +150,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                         highLightNavigation(0, getString(R.string.menu_home));
                          break;
                     case 1:
-                        toolbar.setTitle(getString(R.string.menu_latest));
+                        toolbar.setTitle(R.string.menu_feature);
                         LatestFragment latestFragment = new LatestFragment();
                         fragmentManager.beginTransaction().replace(R.id.Container, latestFragment).commit();
-                        highLightNavigation(1 ,getString(R.string.menu_latest));
+                        highLightNavigation(1 ,getString(R.string.menu_feature));
                          break;
                     case 2:
                         toolbar.setTitle(getString(R.string.menu_favourite));
@@ -288,6 +296,46 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         navigationView.getMenu().getItem(position).setChecked(true);
         toolbar.setTitle(name);
     }
+
+    @SuppressLint("StaticFieldLeak")
+    private class getFlexiInfo extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return JsonUtils.getJSONString(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+            if (null == result || result.length() == 0) {
+            } else {
+                try {
+                    mListFlexiDp = new ArrayList<>();
+                    JSONObject mainJson = new JSONObject(result);
+                    JSONArray jsonArray = mainJson.getJSONArray("enquirydata");
+                    JSONObject objJson;
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        objJson = jsonArray.getJSONObject(i);
+                        DailyPass objItem = new DailyPass();
+                        objItem.setType("Flexi");
+                        objItem.setDuration(objJson.getString(Constant.DP_DUR));
+                        objItem.setPrice(objJson.getString(Constant.DP_PRICE_INR));
+                        mListFlexiDp.add(objItem);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
 
     @SuppressLint("StaticFieldLeak")
     private class MyTaskAbout extends AsyncTask<String, Void, String> {

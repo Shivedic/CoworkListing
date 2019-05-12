@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import com.apps.realestate.MyApplication;
 import com.apps.realestate.R;
 import com.example.adapter.PropertyAdapterLatest;
+import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 import com.example.util.Constant;
 import com.example.util.ItemOffsetDecoration;
@@ -31,6 +32,7 @@ import java.util.ArrayList;
 public class MyPropertiesFragment extends Fragment {
 
     ArrayList<ItemProperty> mListItem;
+    ArrayList<ItemCowork> mListCoItem;
     public RecyclerView recyclerView;
     PropertyAdapterLatest adapter;
     private ProgressBar progressBar;
@@ -110,7 +112,8 @@ public class MyPropertiesFragment extends Fragment {
     }
 
     private void displayData() {
-        adapter = new PropertyAdapterLatest(getActivity(), mListItem);
+        //adapter = new PropertyAdapterLatest(getActivity(), mListItem);
+        adapter = new PropertyAdapterLatest(getActivity(), mListCoItem);
         recyclerView.setAdapter(adapter);
 
         if (adapter.getItemCount() == 0) {

@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import com.apps.realestate.R;
 import com.example.adapter.PropertyAdapterFav;
 import com.example.db.DatabaseHelper;
+import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 import com.example.util.ItemOffsetDecoration;
 
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 public class FavouriteFragment extends Fragment {
 
-    ArrayList<ItemProperty> mListItem,mListItem2;
+    ArrayList<ItemCowork> mListItem,mListItem2;
      public RecyclerView recyclerView;
     PropertyAdapterFav adapter;
     private ProgressBar progressBar;
@@ -78,15 +79,17 @@ public class FavouriteFragment extends Fragment {
         mListItem2.clear();
         for(int i = 0; i < mListItem.size(); i++)
         {
-            ItemProperty itemProperty=mListItem.get(i);
-            ItemProperty objItem = new ItemProperty();
+            ItemCowork itemProperty=mListItem.get(i);
+            ItemCowork objItem = new ItemCowork();
             objItem.setPId(itemProperty.getPId());
             objItem.setPropertyName(itemProperty.getPropertyName());
             objItem.setPropertyThumbnailB(itemProperty.getPropertyThumbnailB());
             objItem.setRateAvg(itemProperty.getRateAvg());
             objItem.setPropertyPrice(itemProperty.getPropertyPrice());
-            objItem.setPropertyBed(itemProperty.getPropertyBed());
-            objItem.setPropertyBath(itemProperty.getPropertyBath());
+            objItem.setPropertyStartTime(itemProperty.getPropertyStartTime());
+            objItem.setPropertyEndTime(itemProperty.getPropertyEndTime());
+            objItem.setPropertyWeekStart(itemProperty.getPropertyWeekStart());
+            objItem.setPropertyWeekEnd(itemProperty.getPropertyWeekEnd());
             objItem.setPropertyArea(itemProperty.getPropertyArea());
             objItem.setPropertyAddress(itemProperty.getPropertyAddress());
             objItem.setPropertyPurpose(itemProperty.getPropertyPurpose());

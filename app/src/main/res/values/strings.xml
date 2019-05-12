@@ -16,6 +16,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_property">All Properties</string>
     <string name="menu_latest">Latest</string>
+    <string name="menu_feature">Featured</string>
     <string name="menu_favourite">Favourite</string>
     <string name="menu_setting">Settings</string>
     <string name="menu_profile">Profile</string>
@@ -45,10 +46,10 @@
     <string name="about">About</string>
 
     <!--Login/Sign Up-->
-     <string name="name_login">Name</string>
-     <string name="email_login">Email</string>
-     <string name="password_login">Password</string>
-      <string name="phone_login">Phone</string>
+    <string name="name_login">Name</string>
+    <string name="email_login">Email</string>
+    <string name="password_login">Password</string>
+    <string name="phone_login">Phone</string>
     <string name="address_title">Address</string>
     <string name="login">Login</string>
     <string name="skip">Skip</string>
@@ -121,7 +122,7 @@
     <string name="favourite_remove">Favourite has been removed</string>
 
     <string name="home_latest">Latest</string>
-    <string name="home_premium">Premium Property</string>
+    <string name="home_premium">Featured</string>
     <string name="featured">Popular</string>
     <string name="more">View All</string>
 
@@ -134,10 +135,12 @@
 
     <string name="property_desc">Property Description</string>
     <string name="property_amenities">Amenities</string>
+    <string name="property_packages">Packages</string>
+    <string name="property_offers">Offers</string>
     <string name="property_floor_plan">Floor Plan</string>
 
     <string name="rating">Rating...</string>
-     <string name="thank_rating">Thanks for rating</string>
+    <string name="thank_rating">Thanks for rating</string>
 
     <string name="bed_bath">Bed</string>
     <string name="bed_bath2">Bath</string>
@@ -152,7 +155,7 @@
     <string name="property_gallery">Property Gallery</string>
     <string name="property_location">Location</string>
 
-     <string name="select_type">Select Purpose Type</string>
+    <string name="select_type">Select Purpose Type</string>
     <string name="select_type_home">Select Purpose</string>
     <string name="add_properties_type">Select Category</string>
     <string name="add_properties_purpose">Purpose</string>
@@ -189,5 +192,38 @@
         <item>Semi-Furnished</item>
         <item>Unfurnished</item>
     </string-array>
+
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit.  Etiam eget ligula eu lectus lobortis condimentum.</string>
+    <string name="flexidesc">Each pass to be used to avail 1 working day of flexi seat type occupancy in any coworking listed.</string>
+    <string name="flexicount">Each pass has a lifetime validity, can be availed whenever you need.</string>
+    <string name="mrdesc">Each pass to be used to avail listed working hours of meeting room in any coworking listed.</string>
+    <string name="mrcount">Each pass has a lifetime validity, can be availed whenever you need.</string>
+    <string name="crdesc">Each pass to be used to avail listed working hours of conference room in any coworking listed.</string>
+    <string name="crcount">Each pass has a lifetime validity, can be availed whenever you need.</string>
+
+
+    <string name="Filladdressinyourprofile">Fill address in your profile</string>
+    <string name="AddNewAddress">Add New Address</string>
+    <string name="FullName">Full Name</string>
+    <string name="MobileNumber">Mobile Number</string>
+    <string name="City">City *</string>
+    <string name="Localityareaorstreet">Locality, area or street *</string>
+    <string name="FlatnoBuildingname">Flat no., Building name *</string>
+    <string name="Pincode">Pincode *</string>
+    <string name="Statee">State *</string>
+    <string name="ChoosePaymentMethod">Choose Payment Method</string>
+    <string name="CashOnDelivery">Cash On Delivery</string>
+    <string name="pay">Pay Using Debit Card/Net Banking/Wallet/UPI</string>
+    <string name="Makepayment">Make payment</string>
+    <string name="OrderConfirmation">Order Confirmation</string>
+    <string name="Thank">Thank you for placing your order with us.</string>
+    <string name="Please">Please check your email for more details. For any questions and further information, please contact our customer support.</string>
+    <string name="ContinueShopping">Continue Shopping</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="mJSONURL_addflexidp"> http://shivedic.in/cokarma/JSON/flexidporder.php</string>
+    <string name="mJSONURL_propertydetails">http://shivedic.in/cokarma/JSON/property_detail.php</string>
 
 </resources>

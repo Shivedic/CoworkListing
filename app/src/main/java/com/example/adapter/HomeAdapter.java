@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.apps.realestate.PropertyDetailsActivity;
 import com.apps.realestate.R;
 import com.example.db.DatabaseHelper;
+import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 import com.example.util.Constant;
 import com.example.util.JsonUtils;
@@ -32,13 +33,13 @@ import java.util.ArrayList;
  */
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ItemRowHolder> {
 
-    private ArrayList<ItemProperty> dataList;
+    private ArrayList<ItemCowork> dataList;
     private Context mContext;
     private InterstitialAd mInterstitial;
     private int AD_COUNT = 0;
     private DatabaseHelper databaseHelper;
 
-    public HomeAdapter(Context context, ArrayList<ItemProperty> dataList) {
+    public HomeAdapter(Context context, ArrayList<ItemCowork> dataList) {
         this.dataList = dataList;
         this.mContext = context;
         databaseHelper = new DatabaseHelper(mContext);
@@ -46,19 +47,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ItemRowHolder>
 
     @Override
     public ItemRowHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_home_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_homeck_item, parent, false);
         return new ItemRowHolder(v);
     }
 
     @Override
     public void onBindViewHolder(final ItemRowHolder holder, final int position) {
-        final ItemProperty singleItem = dataList.get(position);
+        final ItemCowork singleItem = dataList.get(position);
         holder.text.setText(singleItem.getPropertyName());
         holder.textPrice.setText(mContext.getString(R.string.currency_symbol)+singleItem.getPropertyPrice());
         holder.textAddress.setText(singleItem.getPropertyAddress());
-         holder.textBed.setText(singleItem.getPropertyBed()+" "+mContext.getString(R.string.bed_bath));
-        holder.textBath.setText(singleItem.getPropertyBath()+" "+mContext.getString(R.string.bed_bath2));
-        holder.textSquare.setText(singleItem.getPropertyArea());
+         holder.textBed.setText(singleItem.getPropertyStartTime() + " - " + singleItem.getPropertyEndTime());
+        holder.textBath.setText(singleItem.getPropertyWeekStart()+" - "+singleItem.getPropertyWeekEnd());
+      //  holder.textSquare.setText(singleItem.getPropertyArea());
         holder.ratingView.setRating(Float.parseFloat(singleItem.getRateAvg()));
         Picasso.get().load(singleItem.getPropertyThumbnailB()).placeholder(R.drawable.header_top_logo).into(holder.image);
         holder.textTotalRate.setText("("+singleItem.getpropertyTotalRate()+")");
@@ -82,8 +83,10 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ItemRowHolder>
                     fav.put(DatabaseHelper.KEY_TITLE, singleItem.getPropertyName());
                     fav.put(DatabaseHelper.KEY_IMAGE, singleItem.getPropertyThumbnailB());
                     fav.put(DatabaseHelper.KEY_RATE, singleItem.getRateAvg());
-                    fav.put(DatabaseHelper.KEY_BED, singleItem.getPropertyBed());
-                    fav.put(DatabaseHelper.KEY_BATH, singleItem.getPropertyBath());
+                    fav.put(DatabaseHelper.KEY_STARTT, singleItem.getPropertyStartTime());
+                    fav.put(DatabaseHelper.KEY_ENDT, singleItem.getPropertyEndTime());
+                    fav.put(DatabaseHelper.KEY_WEEKS, singleItem.getPropertyWeekStart());
+                    fav.put(DatabaseHelper.KEY_WEEKE, singleItem.getPropertyWeekEnd());
                     fav.put(DatabaseHelper.KEY_ADDRESS, singleItem.getPropertyAddress());
                     fav.put(DatabaseHelper.KEY_AREA, singleItem.getPropertyArea());
                     fav.put(DatabaseHelper.KEY_PRICE, singleItem.getPropertyPrice());

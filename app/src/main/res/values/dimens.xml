@@ -7,4 +7,6 @@
     <integer name="number_of_column">3</integer>
     <dimen name="enchanted_view_pager_margin">0dp</dimen>
     <dimen name="design_navigation_icon_padding" tools:override="true">15dp</dimen>
+
+    <dimen name="card_padding">60dp</dimen>
 </resources>

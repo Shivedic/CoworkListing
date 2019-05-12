@@ -34,7 +34,7 @@
         app:active_centre_button_icon_color="@color/white"
         app:active_item_color="@color/colorPrimary"
         app:centre_button_color="@color/colorPrimary"
-        app:centre_button_icon="@drawable/ic_buy_sell_property"
+        app:centre_button_icon="@drawable/tickets"
         app:inactive_centre_button_icon_color="@color/white"
         app:space_background_color="@color/bg_bottom_bar" />
 
