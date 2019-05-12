@@ -867,4 +867,12 @@ public class PropertyView extends AppCompatActivity {
             menu.getItem(0).setIcon(R.drawable.ic_bookmark_border_white_24dp);
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        // set the flag to true so the next activity won't start up
+        //mIsBackButtonPressed = true;
+        super.onBackPressed();
+
+    }
 }

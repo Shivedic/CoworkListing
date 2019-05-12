@@ -194,6 +194,7 @@ public class LatestFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+    /*
     private void showSearch() {
         final Dialog mDialog = new Dialog(requireActivity(), R.style.Theme_AppCompat_Translucent);
         mDialog.setContentView(R.layout.search_dialog);
@@ -269,6 +270,74 @@ public class LatestFragment extends Fragment {
                 }
             }
         });
+
+        Button btn_submit_apply = mDialog.findViewById(R.id.btn_submit);
+        btn_submit_apply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (Constant.SEARCH_FIL_ID.isEmpty()) {
+                    Toast.makeText(requireActivity(), getString(R.string.choose_one_type), Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(requireActivity(), AdvanceSearchActivity.class);
+                    intent.putExtra("Verify", string_very);
+                    intent.putExtra("PriceMin", final_value_min);
+                    intent.putExtra("PriceMax", final_value_max);
+                    intent.putExtra("Furnishing", string_fur);
+                    intent.putExtra("TypeId", Constant.SEARCH_FIL_ID);
+                    startActivity(intent);
+                    Constant.SEARCH_FIL_ID = "";
+                    mDialog.dismiss();
+                }
+
+            }
+        });
+
+        mDialog.show();
+    }
+*/
+
+    private void showSearch() {
+        final Dialog mDialog = new Dialog(requireActivity(), R.style.Theme_AppCompat_Translucent);
+        mDialog.setContentView(R.layout.adv_filter_dailog);
+        jsonUtils = new JsonUtils(getActivity());
+        jsonUtils.forceRTLIfSupported(getActivity().getWindow());
+
+        //type
+        final ImageView typeIcon = (ImageView) mDialog.findViewById(R.id.typeimg);
+        final LinearLayout typeContainer = (LinearLayout) mDialog.findViewById(R.id.typecontainer);
+        LinearLayout typetitle = (LinearLayout) mDialog.findViewById(R.id.typetitle);
+        typeContainer.setVisibility(View.GONE);
+        typetitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(typeContainer.getVisibility() == View.GONE) { typeContainer.setVisibility(View.VISIBLE); typeIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(typeContainer.getVisibility() == View.VISIBLE) {typeContainer.setVisibility(View.GONE); typeIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //work
+        final ImageView workIcon = (ImageView) mDialog.findViewById(R.id.workimg);
+        final LinearLayout workContainer = (LinearLayout) mDialog.findViewById(R.id.workholder);
+        LinearLayout worktitle = (LinearLayout) mDialog.findViewById(R.id.worktitle);
+        workContainer.setVisibility(View.GONE);
+        worktitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(workContainer.getVisibility() == View.GONE) { workContainer.setVisibility(View.VISIBLE); workIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(workContainer.getVisibility() == View.VISIBLE) {workContainer.setVisibility(View.GONE); workIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+
+        ImageView image_fil_close = mDialog.findViewById(R.id.image_fil_close);
+        image_fil_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
+
 
         Button btn_submit_apply = mDialog.findViewById(R.id.btn_submit);
         btn_submit_apply.setOnClickListener(new View.OnClickListener() {

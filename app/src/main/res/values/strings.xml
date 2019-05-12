@@ -78,6 +78,7 @@
     <string name="detail_very">Verified</string>
     <string name="detail_un_very">Non Verified</string>
     <string name="advance_filter_title">Advance Property Filter</string>
+
     <string name="filter_recommended">Recommended Filter</string>
     <string name="filter_recommended_very">Verified Properties</string>
     <string name="filter_recommended_non_very">Non Verified Properties</string>
@@ -91,6 +92,38 @@
     <string name="filter_type_properties">Property Type</string>
     <string name="filter_bed">BedRoom</string>
     <string name="filter_apply">Apply</string>
+
+    <string name="filter2_type">Type</string>
+    <string name="filter2_work">Work</string>
+    <string name="filter2_cowork">Coworking</string>
+    <string name="filter_cafe">Work Cafe</string>
+    <string name="filter2_monitor">Dual/Single Monitor</string>
+    <string name="filter2_soundrec">Sound Recording Equip</string>
+    <string name="filter2_videorec">Video Recording Equip</string>
+    <string name="filter2_printer">Printer</string>
+    <string name="filter2_scanner">Scanner</string>
+    <string name="filter2_photocopier">Photocopier</string>
+    <string name="filter2_3dprinter">3D Printer</string>
+    <string name="filter2_pcs">Computer(PCs)</string>
+    <string name="filter2_mac">Computer(MAC)</string>
+    <string name="filter2_projector">Projector</string>
+    <string name="filter2_apple_tv">Apple TV</string>
+    <string name="filter2_chromecast">Chromecast</string>
+    <string name="filter2_microphone">Microphone</string>
+    <string name="filter2_photostudio">Photo Studio</string>
+    <string name="filter2_greenscreen">Green Screen</string>
+    <string name="filter2_recordingstudio">Recording Studio</string>
+    <string name="filter2_proflightequip">Lighting Equipment</string>
+    <string name="filter2_drone">Drone</string>
+    <string name="filter2_arequip">AR Equipment</string>
+    <string name="filter2_vrequip">VR Equipment</string>
+    <string name="filter2_screenprinter">Screen Printer</string>
+
+
+
+
+
+
     <string name="max_value">Max :-</string>
     <string name="min_value">Min :-</string>
     <string name="max_value_price">100</string>
