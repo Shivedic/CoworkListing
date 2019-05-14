@@ -310,7 +310,7 @@ public class LatestFragment extends Fragment {
         typeContainer.setVisibility(View.GONE);
         typetitle.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+                    public void onClick(View v) {
                 if(typeContainer.getVisibility() == View.GONE) { typeContainer.setVisibility(View.VISIBLE); typeIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
                 else if(typeContainer.getVisibility() == View.VISIBLE) {typeContainer.setVisibility(View.GONE); typeIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
             }
@@ -328,6 +328,189 @@ public class LatestFragment extends Fragment {
                 else if(workContainer.getVisibility() == View.VISIBLE) {workContainer.setVisibility(View.GONE); workIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
             }
         });
+
+        //transportation
+        final ImageView transporationIcon = (ImageView) mDialog.findViewById(R.id.transportation);
+        final LinearLayout transportationContainer = (LinearLayout) mDialog.findViewById(R.id.transportationholder);
+        LinearLayout transportationtitle = (LinearLayout) mDialog.findViewById(R.id.transportationtitle);
+        transportationContainer.setVisibility(View.GONE);
+        transportationtitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(transportationContainer.getVisibility() == View.GONE) { transportationContainer.setVisibility(View.VISIBLE); transporationIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(transportationContainer.getVisibility() == View.VISIBLE) {transportationContainer.setVisibility(View.GONE); transporationIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //accessibility
+        final ImageView accessibilityIcon = (ImageView) mDialog.findViewById(R.id.accessibility);
+        final LinearLayout accessibilityContainer = (LinearLayout) mDialog.findViewById(R.id.accessibilityholder);
+        LinearLayout accessibilitytitle = (LinearLayout) mDialog.findViewById(R.id.accessibilitytitle);
+        accessibilityContainer.setVisibility(View.GONE);
+        accessibilitytitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(accessibilityContainer.getVisibility() == View.GONE) { accessibilityContainer.setVisibility(View.VISIBLE); accessibilityIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(accessibilityContainer.getVisibility() == View.VISIBLE) {accessibilityContainer.setVisibility(View.GONE); accessibilityIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //classic basic
+        final ImageView classicIcon = (ImageView) mDialog.findViewById(R.id.classic);
+        final LinearLayout classicContainer = (LinearLayout) mDialog.findViewById(R.id.classicholder);
+        LinearLayout classictitle = (LinearLayout) mDialog.findViewById(R.id.classictitle);
+        classicContainer.setVisibility(View.GONE);
+        classictitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(classicContainer.getVisibility() == View.GONE) { classicContainer.setVisibility(View.VISIBLE); classicIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(classicContainer.getVisibility() == View.VISIBLE) {classicContainer.setVisibility(View.GONE); classicIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //seating
+        final ImageView seatingIcon = (ImageView) mDialog.findViewById(R.id.seating);
+        final LinearLayout seatingContainer = (LinearLayout) mDialog.findViewById(R.id.seatingholder);
+        LinearLayout seatingtitle = (LinearLayout) mDialog.findViewById(R.id.seatingtitle);
+        seatingContainer.setVisibility(View.GONE);
+        seatingtitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(seatingContainer.getVisibility() == View.GONE) { seatingContainer.setVisibility(View.VISIBLE); seatingIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(seatingContainer.getVisibility() == View.VISIBLE) {seatingContainer.setVisibility(View.GONE); seatingIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //community
+        final ImageView communityIcon = (ImageView) mDialog.findViewById(R.id.community);
+        final LinearLayout communityContainer = (LinearLayout) mDialog.findViewById(R.id.communityholder);
+        LinearLayout communitytitle = (LinearLayout) mDialog.findViewById(R.id.communitytitle);
+        communityContainer.setVisibility(View.GONE);
+        communitytitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(communityContainer.getVisibility() == View.GONE) {communityContainer.setVisibility(View.VISIBLE); communityIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(communityContainer.getVisibility() == View.VISIBLE) {communityContainer.setVisibility(View.GONE); communityIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //timming
+        final ImageView timmingIcon = (ImageView) mDialog.findViewById(R.id.timming);
+        final LinearLayout timmingContainer = (LinearLayout) mDialog.findViewById(R.id.timmingholder);
+        LinearLayout timmingtitle = (LinearLayout) mDialog.findViewById(R.id.timmingtitle);
+        timmingContainer.setVisibility(View.GONE);
+        timmingtitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(timmingContainer.getVisibility() == View.GONE) {timmingContainer.setVisibility(View.VISIBLE); timmingIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(timmingContainer.getVisibility() == View.VISIBLE) {timmingContainer.setVisibility(View.GONE); timmingIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //working
+        final ImageView workingIcon = (ImageView) mDialog.findViewById(R.id.working);
+        final LinearLayout workingContainer = (LinearLayout) mDialog.findViewById(R.id.workingholder);
+        LinearLayout workingtitle = (LinearLayout) mDialog.findViewById(R.id.workingtitle);
+        workingContainer.setVisibility(View.GONE);
+        workingtitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(workingContainer.getVisibility() == View.GONE) {workingContainer.setVisibility(View.VISIBLE); workingIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(workingContainer.getVisibility() == View.VISIBLE) {workingContainer.setVisibility(View.GONE); workingIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //relax zone
+        final ImageView relaxIcon = (ImageView) mDialog.findViewById(R.id.relax);
+        final LinearLayout relaxContainer = (LinearLayout) mDialog.findViewById(R.id.relaxholder);
+        LinearLayout relaxtitle = (LinearLayout) mDialog.findViewById(R.id.relaxtitle);
+        relaxContainer.setVisibility(View.GONE);
+        relaxtitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(relaxContainer.getVisibility() == View.GONE) {relaxContainer.setVisibility(View.VISIBLE); relaxIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(relaxContainer.getVisibility() == View.VISIBLE) {relaxContainer.setVisibility(View.GONE); relaxIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //cool stuff
+        final ImageView coolIcon = (ImageView) mDialog.findViewById(R.id.cool);
+        final LinearLayout coolContainer = (LinearLayout) mDialog.findViewById(R.id.coolholder);
+        LinearLayout cooltitle = (LinearLayout) mDialog.findViewById(R.id.cooltitle);
+        coolContainer.setVisibility(View.GONE);
+        cooltitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(coolContainer.getVisibility() == View.GONE) {coolContainer.setVisibility(View.VISIBLE); coolIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(coolContainer.getVisibility() == View.VISIBLE) {coolContainer.setVisibility(View.GONE); coolIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //catering
+        final ImageView cateringIcon = (ImageView) mDialog.findViewById(R.id.catering);
+        final LinearLayout cateringContainer = (LinearLayout) mDialog.findViewById(R.id.cateringholder);
+        LinearLayout cateringtitle = (LinearLayout) mDialog.findViewById(R.id.cateringtitle);
+        cateringContainer.setVisibility(View.GONE);
+        cateringtitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cateringContainer.getVisibility() == View.GONE) {cateringContainer.setVisibility(View.VISIBLE); cateringIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(cateringContainer.getVisibility() == View.VISIBLE) {cateringContainer.setVisibility(View.GONE); cateringIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //caffein
+        final ImageView caffeinIcon = (ImageView) mDialog.findViewById(R.id.caffein);
+        final LinearLayout caffeinContainer = (LinearLayout) mDialog.findViewById(R.id.caffeinholder);
+        LinearLayout caffeintitle = (LinearLayout) mDialog.findViewById(R.id.caffeinetitle);
+        caffeinContainer.setVisibility(View.GONE);
+        caffeintitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(caffeinContainer.getVisibility() == View.GONE) {caffeinContainer.setVisibility(View.VISIBLE); caffeinIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(caffeinContainer.getVisibility() == View.VISIBLE) {caffeinContainer.setVisibility(View.GONE); caffeinIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //headcount
+        final ImageView headcountIcon = (ImageView) mDialog.findViewById(R.id.headcount);
+        final LinearLayout headcountContainer = (LinearLayout) mDialog.findViewById(R.id.headcountholder);
+        LinearLayout headcounttitle = (LinearLayout) mDialog.findViewById(R.id.headcounttitle);
+        headcountContainer.setVisibility(View.GONE);
+        headcounttitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(headcountContainer.getVisibility() == View.GONE) {headcountContainer.setVisibility(View.VISIBLE); headcountIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(headcountContainer.getVisibility() == View.VISIBLE) {headcountContainer.setVisibility(View.GONE); headcountIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //type
+        final ImageView Icon = (ImageView) mDialog.findViewById(R.id.type);
+        final LinearLayout Container = (LinearLayout) mDialog.findViewById(R.id.typeholder);
+        LinearLayout title = (LinearLayout) mDialog.findViewById(R.id.title);
+        Container.setVisibility(View.GONE);
+        title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(Container.getVisibility() == View.GONE) {Container.setVisibility(View.VISIBLE); Icon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(Container.getVisibility() == View.VISIBLE) {Container.setVisibility(View.GONE); Icon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
+        //pay / hour
+        final ImageView payIcon = (ImageView) mDialog.findViewById(R.id.pay);
+        final LinearLayout payContainer = (LinearLayout) mDialog.findViewById(R.id.payholder);
+        LinearLayout paytitle = (LinearLayout) mDialog.findViewById(R.id.paytitle);
+        payContainer.setVisibility(View.GONE);
+        paytitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(payContainer.getVisibility() == View.GONE) {payContainer.setVisibility(View.VISIBLE); payIcon.setImageDrawable(getResources().getDrawable(R.drawable.icon_minus));}
+                else if(payContainer.getVisibility() == View.VISIBLE) {payContainer.setVisibility(View.GONE); payIcon.setImageDrawable(getResources().getDrawable(R.drawable.plus_icon));}
+            }
+        });
+
 
 
         ImageView image_fil_close = mDialog.findViewById(R.id.image_fil_close);
