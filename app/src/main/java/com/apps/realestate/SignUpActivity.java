@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -102,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity implements Validator.Valid
         strMobi = edtMobile.getText().toString();
 
         if (JsonUtils.isNetworkAvailable(SignUpActivity.this)) {
-            new MyTaskRegister().execute(Constant.REGISTER_URL + strFullname + "&email=" + strEmail + "&password=" + strPassword + "&phone=" + strMobi);
+            new MyTaskRegister().execute(Constant.REGISTER_URL  + strFullname + "&email=" + strEmail + "&password=" + strPassword + "&phone=" + strMobi);
         } else {
             showToast(getString(R.string.conne_msg1));
         }
@@ -141,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity implements Validator.Valid
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
+            Log.d("myTag", "result : " + result);
             if (null != pDialog && pDialog.isShowing()) {
                 pDialog.dismiss();
             }

@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -111,7 +112,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements Validat
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-
+            Log.d("myTag", "result forgot : " + result);
             if (null != pDialog && pDialog.isShowing()) {
                 pDialog.dismiss();
             }

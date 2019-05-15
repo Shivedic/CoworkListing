@@ -27,15 +27,16 @@ public class Constant implements Serializable {
 
     public static final String PROPERTIES_TYPE = SERVER_URL2 + "api.php?type_list";
 
-    public static final String REGISTER_URL = SERVER_URL + "user_register_api.php?name=";
+    public static final String REGISTER_URL = SERVER_URL2 + "JSON/" + "user_register_api.php?name=";
 
-    public static final String LOGIN_URL = SERVER_URL + "user_login_api.php?email=";
+    public static final String LOGIN_URL = SERVER_URL2 + "JSON/" + "user_login_api.php?email=";
 
-    public static final String FORGOT_PASSWORD_URL = SERVER_URL + "user_forgot_pass_api.php?email=";
+    public static final String FORGOT_PASSWORD_URL = SERVER_URL2 + "JSON/"  + "user_forgot_pass_api.php?email=";
 
     public static final String ABOUT_URL = SERVER_URL + "api.php?app_details";
 
     public static final String SEARCH_URL = SERVER_URL + "api.php?search_text=";
+    public static final String SEARCHBASIC_URL = SERVER_URL2 +   "/JSON/basic_search.php";
 
     public static final String USER_PROFILE_URL = SERVER_URL + "user_profile_api.php?id=";
 
@@ -64,6 +65,7 @@ public class Constant implements Serializable {
     public static final String FLEXIDP_INFO_URL = SERVER_URL2 + "/JSON/getflexidpinfo.php";
 
     public static final String propdetails_URL = SERVER_URL2 + "/JSON/property_detail.php";
+    public static final String LOCATIONVAL_URL = SERVER_URL2 + "/JSON/locationvalues.php";
 
     public static final String ARRAY_NAME = "REAL_ESTATE_APP";
 

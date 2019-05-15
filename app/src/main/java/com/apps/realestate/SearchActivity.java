@@ -1,6 +1,7 @@
 package com.apps.realestate;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.apps.Volley.Volley_Request;
 import com.example.adapter.PropertyAdapterLatest;
 import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
@@ -30,20 +32,22 @@ import java.util.ArrayList;
 public class SearchActivity extends AppCompatActivity {
 
     ArrayList<ItemProperty> mListItem;
-    ArrayList<ItemCowork> mListCoItem;
-    public RecyclerView recyclerView;
-    PropertyAdapterLatest adapter;
-    private ProgressBar progressBar;
-    private LinearLayout lyt_not_found;
-    String Search, typeId, typePurpose;
+    static ArrayList<ItemCowork> mListCoItem;
+    static public RecyclerView recyclerView;
+    static PropertyAdapterLatest adapter;
+    static private ProgressBar progressBar;
+    static private LinearLayout lyt_not_found;
+    static String Country, State, City;
     Toolbar toolbar;
     JsonUtils jsonUtils;
     LinearLayout adLayout;
+    private static Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_item);
+        mContext = SearchActivity.this;
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.menu_search));
         setSupportActionBar(toolbar);
@@ -55,11 +59,12 @@ public class SearchActivity extends AppCompatActivity {
         jsonUtils = new JsonUtils(this);
         jsonUtils.forceRTLIfSupported(getWindow());
 
-        Search = intent.getStringExtra("searchText");
-        typeId = intent.getStringExtra("TypeId");
-        typePurpose = intent.getStringExtra("purpose");
+        Country = intent.getStringExtra("country");
+        State = intent.getStringExtra("state");
+        City = intent.getStringExtra("city");
 
         mListItem = new ArrayList<>();
+        mListCoItem = new ArrayList<>();
         lyt_not_found = findViewById(R.id.lyt_not_found);
         progressBar = findViewById(R.id.progressBar);
         recyclerView = findViewById(R.id.vertical_courses_list);
@@ -74,9 +79,47 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(SearchActivity.this, 1));
         ItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(SearchActivity.this, R.dimen.item_offset);
         recyclerView.addItemDecoration(itemDecoration);
-        if (JsonUtils.isNetworkAvailable(SearchActivity.this)) {
-            new getSearch().execute(Constant.SEARCH_URL + Search.replace(" ", "%20") + "&type_id=" + typeId + "&purpose=" + typePurpose);
-         }
+        //if (JsonUtils.isNetworkAvailable(SearchActivity.this)) {
+         //   new getSearch().execute(Constant.SEARCH_URL + Search.replace(" ", "%20") + "&type_id=" + typeId + "&purpose=" + typePurpose);
+         //}
+        Volley_Request postRequest = new Volley_Request();
+        String req = "{\"country\":\""+ Country +"\",\"state\":\""+ State +"\",\"city\":\""+ City +"\"}";
+        postRequest.createRequest(getApplicationContext(), Constant.SEARCHBASIC_URL, "POST", "searchVal", req);
+    }
+
+    public static void searchResponse(String result){
+    try{
+        JSONObject respObj = new JSONObject(result);
+        JSONArray jsonArray = respObj.getJSONArray("propertydata");
+        JSONObject objJson;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            objJson = jsonArray.getJSONObject(i);
+            ItemCowork objItem = new ItemCowork();
+            objItem.setPId(objJson.getString(Constant.PLACE_ID));
+            objItem.setPropertyName(objJson.getString(Constant.PLACE_TITLE));
+            objItem.setPropertyThumbnailB(objJson.getString(Constant.PLACE_IMAGE));
+            objItem.setRateAvg(objJson.getString(Constant.PLACE_RATE));
+            objItem.setPropertyPrice("1001");
+            //objItem.setPropertyBed(objJson.getString(Constant.PROPERTY_BED));
+            //objItem.setPropertyBath(objJson.getString(Constant.PROPERTY_BATH));
+            objItem.setPropertyStartTime(objJson.getString(Constant.PLACE_TIME_START));
+            objItem.setPropertyEndTime(objJson.getString(Constant.PLACE_TIME_END));
+            objItem.setPropertyWeekStart(objJson.getString(Constant.PLACE_WDSTART));
+            objItem.setPropertyWeekEnd(objJson.getString(Constant.PLACE_WDEND));
+            objItem.setPropertyArea("1000");
+            objItem.setPropertyAddress(objJson.getString(Constant.PLACE_ADDRESS));
+            objItem.setPropertyPurpose(objJson.getString(Constant.PLACE_PURPOSE));
+            objItem.setpropertyTotalRate(objJson.getString(Constant.PLACE_TOTAL_RATE));
+            if (i % 2 == 0) {
+                objItem.setRight(true);
+            }
+            mListCoItem.add(objItem);
+        }
+
+        } catch(Exception e){
+Log.d("myTag", "error : " , e);
+    }
+        displayData();
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -132,12 +175,12 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    private void displayData() {
+    private static void displayData() {
         //adapter = new PropertyAdapterLatest(SearchActivity.this, mListItem);
-        adapter = new PropertyAdapterLatest(SearchActivity.this, mListCoItem);
+        adapter = new PropertyAdapterLatest(mContext, mListCoItem);
 
         recyclerView.setAdapter(adapter);
-
+         Log.d("myTag", "search result : " + mListCoItem.size() + " : " + adapter.getItemCount());
         if (adapter.getItemCount() == 0) {
             lyt_not_found.setVisibility(View.VISIBLE);
         } else {

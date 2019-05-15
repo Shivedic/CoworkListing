@@ -184,6 +184,7 @@ public class SignInActivity extends AppCompatActivity implements Validator.Valid
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
+            Log.d("myTag", "login result : " + result);
             if (null != pDialog && pDialog.isShowing()) {
                 pDialog.dismiss();
             }

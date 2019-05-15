@@ -34,6 +34,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.apps.Volley.Volley_Request;
 import com.example.fragment.AllPropertiesFragment;
 import com.example.fragment.FavouriteFragment;
 import com.example.fragment.HomeFragment;
@@ -62,6 +63,8 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.irfaan008.irbottomnavigation.SpaceItem;
 import com.irfaan008.irbottomnavigation.SpaceNavigationView;
 import com.irfaan008.irbottomnavigation.SpaceOnClickListener;
@@ -73,6 +76,7 @@ import org.json.JSONObject;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -96,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private final static int REQUEST_CHECK_SETTINGS_GPS = 0x1;
     private final static int REQUEST_ID_MULTIPLE_PERMISSIONS = 0x2;
     public static ArrayList<DailyPass> mListFlexiDp;
+    public static HashMap<String,String> countryMap = new HashMap<>();
+    public static HashMap<String,String> stateMap = new HashMap<>();
+    public static HashMap<String, List<String>> countryStateList = new HashMap<>();
+    public static HashMap<String, List<String>> stateCityList = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +128,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         if (JsonUtils.isNetworkAvailable(MainActivity.this)) {
             new getFlexiInfo().execute(Constant.FLEXIDP_INFO_URL);
         }
+        Volley_Request postRequest = new Volley_Request();
+        postRequest.createRequest(getApplicationContext(), Constant.LOCATIONVAL_URL, "POST", "locationVal", "");
 
         HomeFragment homeFragment = new HomeFragment();
         fragmentManager.beginTransaction().replace(R.id.Container, homeFragment).commit();
@@ -290,6 +300,70 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             new MyTaskAbout().execute(Constant.ABOUT_URL);
         }
     }
+
+    public static void locationResponse(String response){
+        try{
+            JSONObject respObj = new JSONObject(response);
+
+            JSONObject countrylist = respObj.getJSONArray("locationdata").getJSONObject(0);
+            JSONArray countryArr = countrylist.getJSONArray("country_list");
+            for(int i=0; i<countryArr.length(); i++){
+                countryMap.put(countryArr.getJSONObject(i).getString("country_id"),countryArr.getJSONObject(i).getString("country_name"));
+            }
+
+            JSONArray stateArr = countrylist.getJSONArray("state_list");
+            for(int i=0; i<stateArr.length(); i++){
+                if(countryStateList.isEmpty()){
+                    ArrayList<String> temp = new ArrayList<>();
+                    temp.add(stateArr.getJSONObject(i).getString("state_name"));
+                    countryStateList.put(countryMap.get(stateArr.getJSONObject(i).getString("country_id")),temp);
+                    stateMap.put(stateArr.getJSONObject(i).getString("state_id"),stateArr.getJSONObject(i).getString("state_name"));
+                }
+                else {
+                    Log.d("myTag", "here  : " + countryMap.get(stateArr.getJSONObject(i).getString("country_id")));
+                    if(countryStateList.containsKey(countryMap.get(stateArr.getJSONObject(i).getString("country_id")))) {
+                        List<String> temp = countryStateList.get(countryMap.get(stateArr.getJSONObject(i).getString("country_id")));
+                        temp.add(stateArr.getJSONObject(i).getString("state_name"));
+                        countryStateList.put(countryMap.get(stateArr.getJSONObject(i).getString("country_id")), temp);
+                        stateMap.put(stateArr.getJSONObject(i).getString("state_id"), stateArr.getJSONObject(i).getString("state_name"));
+                    }
+                    else{
+                        ArrayList<String> temp = new ArrayList<>();
+                        temp.add(stateArr.getJSONObject(i).getString("state_name"));
+                        countryStateList.put(countryMap.get(stateArr.getJSONObject(i).getString("country_id")), temp);
+                        stateMap.put(stateArr.getJSONObject(i).getString("state_id"), stateArr.getJSONObject(i).getString("state_name"));
+                    }
+                    }
+
+            }
+
+            JSONArray cityArr = countrylist.getJSONArray("city_list");
+            for(int i=0; i<cityArr.length(); i++){
+                ArrayList<String> temp = new ArrayList<>();
+                if(stateCityList.isEmpty()){
+                    temp.add(cityArr.getJSONObject(i).getString("city_name"));
+                    stateCityList.put(stateMap.get(cityArr.getJSONObject(i).getString("state_id")),temp);
+                                   }
+                else {
+                    Log.d("myTag",cityArr.getJSONObject(i).getString("state_id") + " : " + stateMap.get(cityArr.getJSONObject(i).getString("state_id")) + " : " + stateCityList.containsKey(stateMap.get(cityArr.getJSONObject(i).getString("state_id"))));
+                    if(stateCityList.containsKey(stateMap.get(cityArr.getJSONObject(i).getString("state_id")))) {
+                        temp.addAll(stateCityList.get(stateMap.get(cityArr.getJSONObject(i).getString("state_id"))));
+                        temp.add(cityArr.getJSONObject(i).getString("city_name"));
+                    } else
+                    {
+                        temp.add(cityArr.getJSONObject(i).getString("city_name"));
+                    }
+                    stateCityList.put(stateMap.get(cityArr.getJSONObject(i).getString("state_id")),temp);
+                    }
+            }
+
+
+        }
+        catch(JSONException e){
+            Log.d("myTag", "error", e);
+        }
+    }
+
 
     public void highLightNavigation(int position, String name) {
 

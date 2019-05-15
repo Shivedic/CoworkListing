@@ -71,7 +71,7 @@
 
                                 <RelativeLayout
                                     android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_marginEnd="5dp"
                                     android:layout_weight="1"
                                     android:background="@drawable/edittext_spin_border"
@@ -81,19 +81,19 @@
                                         android:id="@+id/spPropertyType"
                                         android:layout_width="match_parent"
                                         android:layout_height="45dp"
-                                        android:layout_centerVertical="true"
-                                        android:layout_toStartOf="@+id/main_spin_1"
-                                        android:background="@android:color/transparent"
-                                        android:entries="@array/purpose_array"
-                                        android:paddingEnd="5dp"
-                                        android:gravity="center|start"
                                         android:layout_alignParentStart="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_toStartOf="@+id/main_spin_type"
+                                        android:background="@android:color/transparent"
+                                        android:entries="@array/country_array"
+                                        android:gravity="center|start"
                                         android:paddingStart="5dp"
+                                        android:paddingEnd="5dp"
                                         android:spinnerMode="dropdown"
                                         android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
                                     <LinearLayout
-                                        android:id="@+id/main_spin_1"
+                                        android:id="@+id/main_spin_type"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentEnd="true"
@@ -110,12 +110,67 @@
                                         <ImageView
                                             android:layout_width="17dp"
                                             android:layout_height="17dp"
-                                            android:layout_marginEnd="5dp"
                                             android:layout_marginStart="5dp"
+                                            android:layout_marginEnd="5dp"
                                             android:contentDescription="@string/app_name"
                                             android:src="@drawable/down_arrow" />
                                     </LinearLayout>
                                 </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="5dp"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/edittext_spin_border"
+                                    android:orientation="horizontal">
+
+                                    <Spinner
+                                        android:id="@+id/spPropState"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="45dp"
+                                        android:layout_alignParentStart="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_toStartOf="@+id/main_spin_state"
+                                        android:background="@android:color/transparent"
+                                        android:entries="@array/state_array"
+                                        android:gravity="center|start"
+                                        android:paddingStart="5dp"
+                                        android:paddingEnd="5dp"
+                                        android:spinnerMode="dropdown"
+                                        android:theme="@style/ThemeOverlay.AppCompat.Light" />
+
+                                    <LinearLayout
+                                        android:id="@+id/main_spin_state"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginEnd="5dp"
+                                        android:orientation="horizontal">
+
+                                        <View
+                                            android:layout_width="1dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_marginStart="5dp"
+                                            android:background="@drawable/line_about" />
+
+                                        <ImageView
+                                            android:layout_width="17dp"
+                                            android:layout_height="17dp"
+                                            android:layout_marginStart="5dp"
+                                            android:layout_marginEnd="5dp"
+                                            android:contentDescription="@string/app_name"
+                                            android:src="@drawable/down_arrow" />
+                                    </LinearLayout>
+                                </RelativeLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
 
                                 <RelativeLayout
                                     android:layout_width="0dp"
@@ -129,14 +184,14 @@
                                         android:id="@+id/spPropertyPurpose"
                                         android:layout_width="match_parent"
                                         android:layout_height="45dp"
+                                        android:layout_alignParentStart="true"
                                         android:layout_centerVertical="true"
                                         android:layout_toStartOf="@+id/main_spin_2"
                                         android:background="@android:color/transparent"
-                                        android:entries="@array/purpose_array"
-                                        android:paddingEnd="5dp"
+                                        android:entries="@array/city_array"
                                         android:gravity="center|start"
-                                        android:layout_alignParentStart="true"
                                         android:paddingStart="5dp"
+                                        android:paddingEnd="5dp"
                                         android:spinnerMode="dropdown"
                                         android:theme="@style/ThemeOverlay.AppCompat.Light" />
 
@@ -144,9 +199,9 @@
                                         android:id="@+id/main_spin_2"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
                                         android:layout_centerVertical="true"
                                         android:layout_gravity="center|end"
-                                        android:layout_alignParentEnd="true"
                                         android:layout_marginEnd="5dp"
                                         android:orientation="horizontal">
 
@@ -159,29 +214,14 @@
                                         <ImageView
                                             android:layout_width="17dp"
                                             android:layout_height="17dp"
-                                            android:layout_marginEnd="5dp"
                                             android:layout_marginStart="5dp"
+                                            android:layout_marginEnd="5dp"
                                             android:contentDescription="@string/app_name"
                                             android:src="@drawable/down_arrow" />
                                     </LinearLayout>
                                 </RelativeLayout>
                             </LinearLayout>
 
-                            <EditText
-                                android:id="@+id/edt_name"
-                                android:layout_width="match_parent"
-                                android:layout_height="45dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="10dp"
-                                android:background="@drawable/edittext_spin_border"
-                                android:gravity="center|start"
-                                android:hint="@string/search_keyword"
-                                android:inputType="textPersonName"
-                                android:padding="15dp"
-                                android:textColor="@color/gray_light"
-                                android:textColorHint="@color/gray_light"
-                                android:textCursorDrawable="@drawable/cursor_black"
-                                android:textSize="13sp" />
                         </LinearLayout>
 
                         <Button

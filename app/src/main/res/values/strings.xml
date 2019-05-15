@@ -209,16 +209,116 @@
     <string name="add_properties_submit">Submit</string>
     <string name="select_image">Select Image</string>
 
+
+    <string name="filter3_parking">Free parking on premise</string>
+    <string name="filter3_bikeparking">Bike parking</string>
+    <string name="filter3_carshare">Car Share</string>
+    <string name="filter3_walk">5 min walk from public transit</string>
+    <string name="filter3_10walk">10 min walk from public transit</string>
+
+    <string name="filter4_wheelchair">wheelchair</string>
+    <string name="filter4_member">24hr member access</string>
+
+    <string name="filter5_wifi">High speed Wifi</string>
+    <string name="filter5_heating">Heating</string>
+    <string name="filter5_ac">Air conditioning</string>
+
+    <string name="filter6_desk">Standing Desk</string>
+    <string name="filter6_beanbags">Beanbags</string>
+    <string name="filter6_chairs">Economic chairs</string>
+    <string name="filter6_ballchair">Bous ball chairs</string>
+    <string name="filter6_hammocks">Hammocks</string>
+
+    <string name="filter7_events">Events</string>
+    <string name="filter7_workshop">Workshops</string>
+    <string name="filter7_lunches">Community lunches</string>
+    <string name="filter7_drinks">Community drinks</string>
+    <string name="filter7_facebook">Facebook group for members</string>
+    <string name="filter7_slack">Slack channels for members</string>
+    <string name="filter7_mentorship">Mentorship</string>
+    <string name="filter7_programs">Programs</string>
+    <string name="filter7_app">Community app</string>
+    <string name="filter7_pitching">Pitching events</string>
+    <string name="filter7_incubator">Incubator Programs</string>
+    <string name="filter7_accelerator">Accelerator programs</string>
+    <string name="filter7_sprots">Organized sports team</string>
+    <string name="filter7_toastmaster">Toastmasters</string>
+
+    <string name="filter8_day">Day</string>
+    <string name="filter8_night">night</string>
+    <string name="filter8_24">24*7</string>
+
+    <string name="filter9_5">5 days</string>
+    <string name="filter9_6">6 days</string>
+
+    <string name="filter10_outdoor">Outdoor</string>
+    <string name="filter10_pool">Swimming pool</string>
+    <string name="filter10_lounge">Lounge</string>
+    <string name="filter10_nap">Nap room</string>
+    <string name="filter10_yoga">Yoga room</string>
+    <string name="filter10_meditation">Meditation room</string>
+
+    <string name="filter11_pool">Pool table</string>
+    <string name="filter11_foosball">Foosball</string>
+    <string name="filter11_trampoline">Trampoline</string>
+    <string name="filter11_mini">Mini golf</string>
+    <string name="filter11_library">Library</string>
+    <string name="filter11_gym">Gym</string>
+    <string name="filter11_wine">Free wine</string>
+    <string name="filter11_games">Board games</string>
+    <string name="filter11_karaoke">Karaoke</string>
+    <string name="filter11_dog">Dog friendly</string>
+    <string name="filter11_art">Art gallery</string>
+    <string name="filter11_laundry">Laundry</string>
+    <string name="filter11_court">Volleball court</string>
+
+    <string name="filter12_water">Free drinking water</string>
+    <string name="filter12_alcohol">Alcohol available for purchase</string>
+    <string name="filter12_snacks">Free snacks</string>
+    <string name="filter12_kitchen">Catering kitchen</string>
+    <string name="filter12_onsite">Onsite Restaurant</string>
+    <string name="filter12_puchacesnack">Snacks available for purchase</string>
+
+    <string name="filter13_tea">Free tea</string>
+    <string name="filter13_coffee">Free coffee</string>
+    <string name="filter13_cafe">Onsite cafe</string>
+    <string name="filter13_coffeepurchase">Coffee available for purchase</string>
+
+    <string name="filter14_individual">Individual</string>
+    <string name="filter14_2team">2-3 team</string>
+    <string name="filter14_3team">3-7 team</string>
+    <string name="filter14_7">7 plus</string>
+
+    <string name="filter14_conference">Conference room</string>
+    <string name="filter14_meeting">Meeting room</string>
+    <string name="filter14_office">Office/Cabin</string>
+    <string name="filter14_seating">Seating</string>
+    <string name="filter14_virtual">Virtual office</string>
+
+    <string name="filter15_conference">Conference Room</string>
+    <string name="filter15_meeting">Meeting Room</string>
+
     <!--if you want rtl change value of isRTL to true else false-->
     <string name="isRTL">false</string>
 
     <string name="play_more_app">https://play.google.com/store/apps/developer?id=Vishal+Android+Apps</string>
 
+    <string-array name="country_array">
+        <item>Select Country</item>
+    </string-array>
+
+    <string-array name="state_array">
+        <item>Select State</item>
+    </string-array>
+
+    <string-array name="city_array">
+        <item>Select City</item>
+    </string-array>
 
     <string-array name="purpose_array">
-        <item>Sale</item>
-        <item>Rent</item>
+        <item>Select</item>
     </string-array>
+
 
     <string-array name="fur_array">
         <item>Furnished</item>

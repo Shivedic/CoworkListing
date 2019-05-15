@@ -53,6 +53,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -76,7 +78,7 @@ public class HomeFragment extends Fragment {
     ArrayList<String> mPropertyName;
     EditText edtSearch;
     Button btnSubmit;
-    Spinner spinnerType, spinnerPurpose;
+    Spinner spinnerType, spinnerPurpose, spinnerState;
     String srt_type[];
     LinearLayout lay_home_bottom;
     private FragmentManager fragmentManager;
@@ -136,7 +138,7 @@ public class HomeFragment extends Fragment {
         btnSubmit = rootView.findViewById(R.id.btn_submit);
         spinnerType = rootView.findViewById(R.id.spPropertyType);
         spinnerPurpose = rootView.findViewById(R.id.spPropertyPurpose);
-
+        spinnerState = rootView.findViewById(R.id.spPropState);
 
         btnLatest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -336,38 +338,35 @@ public class HomeFragment extends Fragment {
 
     private void setResult2() {
 
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(requireActivity(), android.R.layout.simple_list_item_1, mPropertyName);
-        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayList<String> temp = new ArrayList<>();
+        temp.addAll(MainActivity.countryStateList.keySet());
+        temp.add(0, "Select Country");
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, temp);
+        typeAdapter.setDropDownViewResource(R.layout.spinner_item_home);
         spinnerType.setAdapter(typeAdapter);
 
-        ArrayAdapter<String> typeAdapter2 = new ArrayAdapter<>(requireActivity(), R.layout.spinner_item_home, srt_type);
-        typeAdapter.setDropDownViewResource(R.layout.spinner_item_home);
-        spinnerPurpose.setAdapter(
-                new NothingSelectedSpinnerAdapter(typeAdapter2,
-                        R.layout.contact_spinner_row_nothing_selected_home, requireActivity()));
-        spinnerPurpose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO Auto-generated method stub
-                if (position == 0) {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray_light));
-                    ((TextView) parent.getChildAt(0)).setTextSize(13);
+        ArrayList<String> temp2 = new ArrayList<>();
+        temp2.add(0, "Select State");
+        ArrayAdapter<String> typeAdapterState = new ArrayAdapter<>(requireActivity(), R.layout.spinner_item_home, temp2);
+        typeAdapterState.setDropDownViewResource(R.layout.spinner_item_home);
+//        spinnerState.setAdapter(
+  //              new NothingSelectedSpinnerAdapter(typeAdapterState,
+    //    R.layout.contact_spinner_row_nothing_selected_home, requireActivity()));
+        spinnerState.setAdapter(typeAdapterState);
 
-                } else {
-                    ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray_light));
-                    ((TextView) parent.getChildAt(0)).setTextSize(13);
 
-                }
-            }
+        ArrayList<String> temp3 = new ArrayList<>();
+        temp3.add(0, "Select City");
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(requireActivity(), R.layout.spinner_item_home, temp3);
+        cityAdapter.setDropDownViewResource(R.layout.spinner_item_home);
+        spinnerPurpose.setAdapter(cityAdapter);
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
+//        spinnerPurpose.setAdapter(
+  //              new NothingSelectedSpinnerAdapter(cityAdapter,
+    //                    R.layout.contact_spinner_row_nothing_selected_home, requireActivity()));
 
-            }
-        });
+
 
         spinnerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -382,6 +381,74 @@ public class HomeFragment extends Fragment {
                 } else {
                     ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray_light));
                     ((TextView) parent.getChildAt(0)).setTextSize(13);
+                    ArrayList<String> temp = new ArrayList<>();
+                    Log.d("myTag",  "Now : " + MainActivity.countryStateList.get(spinnerType.getSelectedItem().toString()));
+                    temp.addAll(MainActivity.countryStateList.get(spinnerType.getSelectedItem().toString()));
+                    temp.add(0, "Select State");
+                    ArrayAdapter<String> typeAdapterState = new ArrayAdapter<>(requireActivity(), R.layout.spinner_item_home, temp);
+                    typeAdapterState.setDropDownViewResource(R.layout.spinner_item_home);
+                    spinnerState.setAdapter(
+                            typeAdapterState);
+                    //spinnerState.setAdapter(
+                      //      new NothingSelectedSpinnerAdapter(typeAdapterState,
+                        //            R.layout.contact_spinner_row_nothing_selected_home, requireActivity()));
+                    spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view,
+                                                   int position, long id) {
+                            // TODO Auto-generated method stub
+                            if (position == 0) {
+                                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray_light));
+                                ((TextView) parent.getChildAt(0)).setTextSize(13);
+
+                            } else {
+                                ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray_light));
+                                ((TextView) parent.getChildAt(0)).setTextSize(13);
+                                ArrayList<String> temp = new ArrayList<>();
+                                temp.addAll(MainActivity.stateCityList.get(spinnerState.getSelectedItem().toString()));
+                                temp.add(0, "Select City");
+                                ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(requireActivity(), R.layout.spinner_item_home, temp);
+                                cityAdapter.setDropDownViewResource(R.layout.spinner_item_home);
+                                spinnerPurpose.setAdapter(
+                                        cityAdapter);
+
+//                                spinnerPurpose.setAdapter(
+  //                                      new NothingSelectedSpinnerAdapter(cityAdapter,
+    //                                            R.layout.contact_spinner_row_nothing_selected_home, requireActivity()));
+                                spinnerPurpose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> parent, View view,
+                                                               int position, long id) {
+                                        // TODO Auto-generated method stub
+                                        if (position == 0) {
+                                            ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray_light));
+                                            ((TextView) parent.getChildAt(0)).setTextSize(13);
+
+                                        } else {
+                                            ((TextView) parent.getChildAt(0)).setTextColor(getResources().getColor(R.color.gray_light));
+                                            ((TextView) parent.getChildAt(0)).setTextSize(13);
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> parent) {
+                                        // TODO Auto-generated method stub
+
+                                    }
+                                });
+
+                            }
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+                            // TODO Auto-generated method stub
+
+                        }
+                    });
 
                 }
             }
@@ -396,15 +463,15 @@ public class HomeFragment extends Fragment {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String search = edtSearch.getText().toString();
-                if (!search.isEmpty()) {
+                //String search = edtSearch.getText().toString();
+               // if (!search.isEmpty()) {
                     Intent intent = new Intent(getActivity(), SearchActivity.class);
-                    intent.putExtra("purpose", String.valueOf(spinnerPurpose.getSelectedItem()));
-                    intent.putExtra("TypeId", mListType.get(spinnerType.getSelectedItemPosition()).getTypeId());
-                    intent.putExtra("searchText", search);
+                    intent.putExtra("city", String.valueOf(spinnerPurpose.getSelectedItem()));
+                    intent.putExtra("state", String.valueOf(spinnerState.getSelectedItem()));
+                    intent.putExtra("country", String.valueOf(spinnerType.getSelectedItem()));
                     startActivity(intent);
-                    edtSearch.getText().clear();
-                }
+                   // edtSearch.getText().clear();
+                //}
             }
         });
 

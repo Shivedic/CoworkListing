@@ -14,7 +14,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.apps.Config;
+import com.apps.realestate.MainActivity;
 import com.apps.realestate.PropertyView;
+import com.apps.realestate.SearchActivity;
 
 import org.json.JSONObject;
 
@@ -109,6 +111,10 @@ public class Volley_Request {
                         Config.addOrederResponse(responseString);
                  else if(returnPathCopy =="propdetail")
                         PropertyView.getPropertyResponse(responseString);
+                    else if(returnPathCopy =="locationVal")
+                        MainActivity.locationResponse(responseString);
+                    else if(returnPathCopy =="searchVal")
+                        SearchActivity.searchResponse(responseString);
             }
             }, new Response.ErrorListener() {
                 @Override
