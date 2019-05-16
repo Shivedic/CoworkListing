@@ -48,6 +48,7 @@ import com.example.fragment.OffersFragment;
 import com.example.item.ItemCowork;
 import com.example.item.ItemProperty;
 import com.example.item.Package;
+import com.example.item.Review;
 import com.example.util.Constant;
 import com.example.util.JsonUtils;
 import com.github.ornolfr.ratingview.RatingView;
@@ -79,6 +80,7 @@ public class PropertyView extends AppCompatActivity {
     //ItemProperty objBean;
     static  ItemCowork objItem;
     static ArrayList<Package> mPackageList;
+    static ArrayList<Review> mReviewList;
     static String Id;
     static ArrayList<String> mGallery, mAmenities, mOffers;
     private FragmentManager fragmentManager;
@@ -130,7 +132,7 @@ public class PropertyView extends AppCompatActivity {
         mGallery = new ArrayList<>();
         mAmenities = new ArrayList<>();
         mOffers = new ArrayList<>();
-
+mReviewList = new ArrayList<>();
         image_fur = findViewById(R.id.image_fur);
         textFur = findViewById(R.id.textFur);
         image_very = findViewById(R.id.image_very);
@@ -467,6 +469,18 @@ public class PropertyView extends AppCompatActivity {
                 amenities = amenities.substring(0, amenities.length() - 1);
                 objItem.setPropertyAmenities(amenities);
 
+                JSONArray reviewsArray = objectJson.getJSONArray("reviews");
+                for(int i=0; i<reviewsArray.length(); i++){
+                    Review review = new Review();
+                    review.setUserName(reviewsArray.getJSONObject(i).getString("user_name"));
+                    review.setDate(reviewsArray.getJSONObject(i).getString("review_date"));
+                    review.setDesc(reviewsArray.getJSONObject(i).getString("review_desc"));
+                    review.setTag(reviewsArray.getJSONObject(i).getString("review_tag"));
+                    review.setResponse(reviewsArray.getJSONObject(i).getString("response"));
+                    mReviewList.add(review);
+                }
+                objItem.setReviews(mReviewList);
+
                 JSONArray offersArray = objectJson.getJSONArray("offers");
                 String offers = "";
                 for (int i = 0; i < offersArray.length(); i++) {
@@ -613,6 +627,17 @@ public class PropertyView extends AppCompatActivity {
             txtAmenities.setVisibility(View.GONE);
             view.setVisibility(View.GONE);
             view1.setVisibility(View.GONE);
+        }
+
+        if (!objItem.getReviews().isEmpty()) {
+            ReviewFragment amenitiesFragment = ReviewFragment.newInstance(mReviewList);
+            FragmentActivity activity = (FragmentActivity)view.getContext();
+            FragmentManager fragmentManager = activity.getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.ContainerReviews, amenitiesFragment).commit();
+        } else {
+            //txtAmenities.setVisibility(View.GONE);
+            //view.setVisibility(View.GONE);
+            //view1.setVisibility(View.GONE);
         }
 
         if (!objItem.getPropertyOffers().isEmpty())

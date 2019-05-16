@@ -1,5 +1,7 @@
 package com.example.item;
 
+import java.util.ArrayList;
+
 public class ItemCowork {
 
     private String pId;
@@ -25,6 +27,15 @@ public class ItemCowork {
     private String propertyTotalRate;
     private String propertyFur;
     private String propertyOffers;
+    private ArrayList<Review> reviews;
+
+    public ArrayList<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(ArrayList<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public String getPropertyOffers() {
         return propertyOffers;
