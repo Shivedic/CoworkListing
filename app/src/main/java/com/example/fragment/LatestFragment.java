@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -59,6 +61,7 @@ public class LatestFragment extends Fragment {
     String string_very, string_fur, final_value_min, final_value_max, string_sort;
     int save_sort = 1;
     JsonUtils jsonUtils;
+    String req = "{";
 
     @Nullable
     @Override
@@ -521,6 +524,31 @@ public class LatestFragment extends Fragment {
             }
         });
 
+        // Creating post request string
+
+        // 1. monitor checkbox
+        final CheckBox cb = mDialog.findViewById(R.id.filter_monitor);
+        mDialog.findViewById(R.id.filter_monitor).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cb.isChecked()){
+                    req += "\"monitor\":\"1\",";
+                    Log.d("myTag", "req addition : " + req);
+                } else {
+                    Log.d("myTag", (String.valueOf( (req.contains("\"monitor\":\"1\",")))));
+                    if(req.contains("\"monitor\":\"1\",")) {
+
+                        req = req.replace("\"monitor\":\"1\",", "");
+                    }
+                    Log.d("myTag", "req subtract : " + req);
+                }
+            }
+        });
+
+        req = req.substring(0, req.length() - 1);
+        req += "}";
+
+        // req done
 
         Button btn_submit_apply = mDialog.findViewById(R.id.btn_submit);
         btn_submit_apply.setOnClickListener(new View.OnClickListener() {
