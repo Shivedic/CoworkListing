@@ -526,7 +526,7 @@ public class LatestFragment extends Fragment {
 
         // Creating post request string
 
-        // 1. monitor checkbox
+        // 1. Monitor req
         final CheckBox cb = mDialog.findViewById(R.id.filter_monitor);
         mDialog.findViewById(R.id.filter_monitor).setOnClickListener(new View.OnClickListener() {
             @Override
