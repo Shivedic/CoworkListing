@@ -293,6 +293,9 @@
     <string name="filter15_conference">Conference Room</string>
     <string name="filter15_meeting">Meeting Room</string>
 
+    <string name="txt_reviews">Reviews</string>
+    <string name="request_enquiry">Request Enquiry</string>
+    <string name="book_tour">Book Tour</string>
     <!--if you want rtl change value of isRTL to true else false-->
     <string name="isRTL">false</string>
 

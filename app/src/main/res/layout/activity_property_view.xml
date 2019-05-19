@@ -459,28 +459,32 @@
                                 android:layout_marginTop="8dp"
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/list_line_detail_gradient" />
-<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
-                            <TextView
-                                android:id="@+id/txtAmenities"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/property_amenities"
-                                android:textColor="@color/black"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/plus_img"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="false"
         android:layout_marginTop="5dp"
         android:src="@drawable/plus_icon" />
-</RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtAmenities"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/property_amenities"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
                             <View
                                 android:id="@+id/viewAmenities"
                                 android:layout_width="40dp"
@@ -543,15 +547,15 @@
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/list_line_detail_gradient" />
 
-                                <TextView
-                                    android:id="@+id/txtReviews"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:text="@string/property_amenities"
-                                    android:textColor="@color/black"
-                                    android:textSize="14sp"
-                                    android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/txtReviews"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/txt_reviews"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
 
                             <View
@@ -609,6 +613,51 @@
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/list_line_detail_gradient" />
 
+                            <View
+                                android:layout_width="40dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/orange" />
+
+                            <Button
+                                android:id="@+id/enquiry_btn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@drawable/round_green_bg"
+                                android:text="@string/request_enquiry" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/list_line_detail_gradient" />
+
+                            <View
+                                android:layout_width="40dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/orange" />
+
+                            <Button
+                                android:id="@+id/btn_book_tour"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@drawable/round_green_bg"
+                                android:text="@string/book_tour" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/list_line_detail_gradient" />
 
                         </LinearLayout>
                     </android.support.v7.widget.CardView>

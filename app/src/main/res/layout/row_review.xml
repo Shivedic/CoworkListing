@@ -21,24 +21,30 @@
 
         <com.github.ornolfr.ratingview.RatingView
             android:id="@+id/ratingView2"
+            drawable_size="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:drawable_empty="@drawable/ic_star_empty"
+            app:drawable_filled="@drawable/ic_star_filled"
+            app:drawable_half="@drawable/ic_star_half"
+            app:drawable_margin="2dp"
+            app:is_indicator="true"
             card_view:drawable_empty="@drawable/ic_star_empty"
             card_view:drawable_filled="@drawable/ic_star_filled"
             card_view:drawable_half="@drawable/ic_star_half"
             card_view:drawable_margin="2dp"
-            card_view:drawable_size="15dp"
+            card_view:drawable_size="5dp"
             card_view:is_indicator="true"
-            card_view:max_count="5"
-            drawable_size="@dimen/borderRadius"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            card_view:max_count="5" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/review_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textSize="12sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,7 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textSize="12sp" />
     </LinearLayout>
 
 </LinearLayout>

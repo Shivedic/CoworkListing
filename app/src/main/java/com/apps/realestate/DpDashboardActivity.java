@@ -41,6 +41,7 @@ public class DpDashboardActivity extends AppCompatActivity {
         viewPager.setPageTransformer(false, fragmentCardShadowTransformer);
         viewPager.setOffscreenPageLimit(3);
 
+        /*
         ViewPager viewPager2 = (ViewPager) findViewById(R.id.viewPager2);
 
         CardFragmentPagerAdapter pagerAdapter2 = new CardFragmentPagerAdapter(getSupportFragmentManager(), dpToPixels(2, this), MainActivity.mListFlexiDp);
@@ -60,6 +61,7 @@ public class DpDashboardActivity extends AppCompatActivity {
         viewPager3.setAdapter(pagerAdapter3);
         viewPager3.setPageTransformer(false, fragmentCardShadowTransformer3);
         viewPager3.setOffscreenPageLimit(3);
+*/
 
     }
 

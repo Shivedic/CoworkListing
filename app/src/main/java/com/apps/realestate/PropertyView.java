@@ -26,6 +26,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.FrameLayout;
@@ -95,6 +96,8 @@ public class PropertyView extends AppCompatActivity {
     static ImageView image_fur, image_very, img_plus;
     static TextView textFur, textVery;
     static FrameLayout containerAmenities;
+    static Button enquiryBtn;
+    static Button tourBtn;
 
     //Package
     private static ExpandableListView expandableListView;
@@ -163,7 +166,21 @@ mReviewList = new ArrayList<>();
         adLayout = findViewById(R.id.adview);
         img_plus = findViewById(R.id.plus_img);
         expandableListView = findViewById(R.id.expandableListPack);
+        enquiryBtn = findViewById(R.id.enquiry_btn);
+        tourBtn = findViewById(R.id.btn_book_tour);
+        enquiryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showEnquiry();
+            }
+        });
 
+        tourBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showTour();
+            }
+        });
 
         Intent intent = getIntent();
         iswhichscreen = intent.getBooleanExtra("isNotification", false);
@@ -470,7 +487,7 @@ mReviewList = new ArrayList<>();
                 objItem.setPropertyAmenities(amenities);
 
                 JSONArray reviewsArray = objectJson.getJSONArray("reviews");
-                for(int i=0; i<reviewsArray.length(); i++){
+                for(int i=0; i<reviewsArray.length() && i<5; i++){
                     Review review = new Review();
                     review.setUserName(reviewsArray.getJSONObject(i).getString("user_name"));
                     review.setDate(reviewsArray.getJSONObject(i).getString("review_date"));
@@ -684,6 +701,30 @@ mReviewList = new ArrayList<>();
         // setting list adapter
         expandableListView.setAdapter(expandableListViewAdapter);
         getExpandableListViewSize(expandableListView);
+    }
+
+    private void showEnquiry() {
+        final Dialog mDialog = new Dialog(mActivity, R.style.Theme_AppCompat_Translucent);
+        mDialog.setContentView(R.layout.reqest_enq_dailog);
+        jsonUtils = new JsonUtils(PropertyView.mActivity);
+        jsonUtils.forceRTLIfSupported(mActivity.getWindow());
+        TextView tv = (TextView)mDialog.findViewById(R.id.enq_label);
+        tv.setText("Message");
+        EditText et = (EditText) mDialog.findViewById(R.id.enquiry_text);
+        et.setSelection(0);
+        mDialog.show();
+    }
+
+    private void showTour() {
+        final Dialog mDialog = new Dialog(mActivity, R.style.Theme_AppCompat_Translucent);
+        mDialog.setContentView(R.layout.book_tour_dailog);
+        jsonUtils = new JsonUtils(PropertyView.mActivity);
+        jsonUtils.forceRTLIfSupported(mActivity.getWindow());
+        //TextView tv = (TextView)mDialog.findViewById(R.id.enq_label);
+        //tv.setText("Message");
+        //EditText et = (EditText) mDialog.findViewById(R.id.enquiry_text);
+        //et.setSelection(0);
+        mDialog.show();
     }
 
     private static void setListViewHeight(ExpandableListView listView,
