@@ -527,6 +527,26 @@ public class LatestFragment extends Fragment {
         // Creating post request string
 
         // 1. Monitor req
+
+
+        final CheckBox cb = mDialog.findViewById(R.id.filter_monitor);
+        mDialog.findViewById(R.id.filter_monitor).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(cb.isChecked()){
+                    req += "\"monitor\":\"1\",";
+                    Log.d("myTag", "req addition : " + req);
+                } else {
+                    Log.d("myTag", (String.valueOf( (req.contains("\"monitor\":\"1\",")))));
+                    if(req.contains("\"monitor\":\"1\",")) {
+
+                        req = req.replace("\"monitor\":\"1\",", "");
+                    }
+                    Log.d("myTag", "req subtract : " + req);
+                }
+            }
+        });
+/*
         final CheckBox cb = mDialog.findViewById(R.id.filter_monitor);
         mDialog.findViewById(R.id.filter_monitor).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -545,6 +565,7 @@ public class LatestFragment extends Fragment {
             }
         });
 
+*/
         req = req.substring(0, req.length() - 1);
         req += "}";
 
