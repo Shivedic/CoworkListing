@@ -245,7 +245,7 @@
                             android:textSize="10sp" />
 
                         <CheckBox
-                            android:id="@+id/filter_scanner"
+                                android:id="@+id/filter_scanner"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -524,7 +524,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/parking"
+                                android:id="@+id/filter_parking"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -642,7 +642,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/wheelchair"
+                                android:id="@+id/filter_wheelchair"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -652,7 +652,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/member"
+                                android:id="@+id/filter_member"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -722,7 +722,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/wifi"
+                                    android:id="@+id/filter_wifi"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -732,7 +732,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/heating"
+                                android:id="@+id/filter_heating"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -741,7 +741,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/ac"
+                                android:id="@+id/filter_ac"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -811,7 +811,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/desk"
+                                android:id="@+id/filter_desk"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -821,7 +821,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/beanbags"
+                                android:id="@+id/filter_beanbags"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -830,7 +830,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/chairs"
+                                android:id="@+id/filter_chairs"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -848,7 +848,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/ballchair"
+                                android:id="@+id/filter_ballchair"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -857,7 +857,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/hammocks"
+                                android:id="@+id/filter_hammocks"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -923,7 +923,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/events"
+                                android:id="@+id/filter_events"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -933,7 +933,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/workshop"
+                                android:id="@+id/filter_workshop"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -942,7 +942,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/lunches"
+                                android:id="@+id/filter_lunches"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -960,7 +960,7 @@
                                 android:orientation="horizontal"
                                 android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/drinks"
+                                    android:id="@+id/filter_drinks"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -969,7 +969,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/facebook"
+                                android:id="@+id/filter_facebook"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -978,7 +978,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/slack"
+                                android:id="@+id/filter_slack"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -996,7 +996,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/mentorship"
+                                android:id="@+id/filter_mentorship"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1005,7 +1005,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/app"
+                                android:id="@+id/filter_app"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1014,7 +1014,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/pitching"
+                                android:id="@+id/filter_pitching"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1032,7 +1032,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/incubator"
+                                android:id="@+id/filter_incubator"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1041,7 +1041,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/accelerator"
+                                android:id="@+id/filter_accelerator"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1050,7 +1050,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/sports"
+                                android:id="@+id/filter_sports"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1068,7 +1068,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/toastmaster"
+                                android:id="@+id/filter_toastmaster"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1133,7 +1133,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/day"
+                                android:id="@+id/filter_day"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1143,7 +1143,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/night"
+                                android:id="@+id/filter_night"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1152,7 +1152,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/hour24"
+                                android:id="@+id/filter_hour24"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1223,7 +1223,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/days5"
+                                android:id="@+id/filter_days5"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1233,7 +1233,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/days6"
+                                android:id="@+id/filter_days6"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1304,7 +1304,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/outdoor"
+                                android:id="@+id/filter_outdoor"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1314,7 +1314,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/swimming"
+                                    android:id="@+id/filter_swimming"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1323,7 +1323,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/lounge"
+                                android:id="@+id/filter_lounge"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1341,7 +1341,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/nap"
+                                android:id="@+id/filter_nap"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1350,7 +1350,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/yoga"
+                                android:id="@+id/filter_yoga"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1359,7 +1359,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/meditation"
+                                android:id="@+id/filter_meditation"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1416,7 +1416,7 @@
                             android:textSize="14sp" />
                     </LinearLayout>
                     <LinearLayout
-                        android:id="@+id/coolholder"
+                        android:id="@+id/filter_coolholder"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -1430,7 +1430,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/pool"
+                                android:id="@+id/filter_pool"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1440,7 +1440,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/foosball"
+                                android:id="@+id/filter_foosball"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1449,7 +1449,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/trampoline"
+                                android:id="@+id/filter_trampoline"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1467,7 +1467,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/min"
+                                android:id="@+id/filter_min"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1476,7 +1476,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/library"
+                                android:id="@+id/filter_library"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1485,7 +1485,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/gym"
+                                android:id="@+id/filter_gym"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1503,7 +1503,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/wine"
+                                android:id="@+id/filter_wine"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1512,7 +1512,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/games"
+                                android:id="@+id/filter_games"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1521,7 +1521,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/karaoke"
+                                android:id="@+id/filter_karaoke"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1539,7 +1539,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/dog"
+                                android:id="@+id/filter_dog"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1548,7 +1548,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/art"
+                                android:id="@+id/filter_art"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1557,7 +1557,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/laundry"
+                                android:id="@+id/filter_laundry"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1575,7 +1575,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/court"
+                                android:id="@+id/filter_court"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1645,7 +1645,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/water"
+                                android:id="@+id/filter_water"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1655,7 +1655,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/alcohol"
+                                android:id="@+id/filter_alcohol"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1664,7 +1664,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/snacks"
+                                android:id="@+id/filter_snacks"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1682,7 +1682,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/kitchen"
+                                android:id="@+id/filter_kitchen"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1691,7 +1691,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/purchasesnack"
+                                android:id="@+id/filter_purchasesnack"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1700,7 +1700,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/onsite"
+                                android:id="@+id/filter_onsite"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1781,7 +1781,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/tea"
+                                android:id="@+id/filter_tea"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1791,7 +1791,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/coffee"
+                                android:id="@+id/filter_coffee"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1800,7 +1800,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/cafe"
+                                android:id="@+id/filter_cafe"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1818,7 +1818,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/coffeepurchase"
+                                android:id="@+id/filter_coffeepurchase"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1889,7 +1889,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/individual"
+                                android:id="@+id/filter_individual"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1899,7 +1899,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/team2"
+                                android:id="@+id/filter_team2"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1909,7 +1909,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/team3"
+                                android:id="@+id/filter_team3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1928,7 +1928,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/team7"
+                                android:id="@+id/filter_team7"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -1999,7 +1999,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/filter14_conference"
+                                android:id="@+id/filter_conference"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -2009,7 +2009,7 @@
                                 android:textSize="10sp" />
 
                             <CheckBox
-                                android:id="@+id/meeting"
+                                android:id="@+id/filter_meeting"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -2018,7 +2018,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/office"
+                                android:id="@+id/filter_office"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -2036,7 +2036,7 @@
                             android:orientation="horizontal"
                             android:weightSum="3">
                             <CheckBox
-                                android:id="@+id/filter14_seating"
+                                android:id="@+id/filter_seating"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -2045,7 +2045,7 @@
                                 android:textColor="@color/gray"
                                 android:textSize="10sp" />
                             <CheckBox
-                                android:id="@+id/virtual"
+                                android:id="@+id/filter_virtual"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -2115,7 +2115,7 @@
                             android:weightSum="3">
 
                             <CheckBox
-                                android:id="@+id/conference"
+                                android:id="@+id/fitler_conference"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
