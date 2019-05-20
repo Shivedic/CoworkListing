@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.Uri;
@@ -104,6 +105,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public static HashMap<String,String> stateMap = new HashMap<>();
     public static HashMap<String, List<String>> countryStateList = new HashMap<>();
     public static HashMap<String, List<String>> stateCityList = new HashMap<>();
+    public static final String mypreference = "mypref";
+    public static final String pref_email = "pref_email";
+    public static final String pref_password = "pref_password";
+    public static final String pref_check = "pref_check";
+    private static SharedPreferences pref;
+    private static SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +131,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mListType = new ArrayList<>();
         mPropertyName = new ArrayList<>();
         mListItem = new ArrayList<>();
+        pref = getSharedPreferences(mypreference, 0); // 0 - for private mode
+        editor = pref.edit();
+
 
         if (JsonUtils.isNetworkAvailable(MainActivity.this)) {
             new getFlexiInfo().execute(Constant.FLEXIDP_INFO_URL);

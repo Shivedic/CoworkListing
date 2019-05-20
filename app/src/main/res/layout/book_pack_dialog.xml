@@ -3,6 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#85000000">
@@ -48,7 +49,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/id_fil"
-                        android:text="@string/send_enq_title"
+                        android:text="@string/book_pack"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -66,6 +67,33 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/pack_spin_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:text="Select Package :  "
+                        android:textColor="@color/black" />
+
+                    <Spinner
+                        android:id="@+id/pack_spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/edittext_spin_border" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:orientation="vertical">
 
@@ -74,7 +102,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:text="Message"
+                        android:gravity="center_horizontal"
+                        android:text="Pick A Date"
                         android:textColor="@color/black" />
 
                 </LinearLayout>
@@ -88,35 +117,30 @@
                     android:background="@color/filter_line" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/main_green_stroke_color">
 
-                    <EditText
-                        android:id="@+id/enquiry_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/edittext_border"
-                        android:cursorVisible="false"
-                        android:ems="10"
-                        android:hint="Input here"
-                        android:inputType="text|textMultiLine|textPersonName"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                    <Button
-                        android:id="@+id/send_enq_btn"
+                    <CalendarView
+                        android:id="@+id/tour_calendar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:background="@drawable/round_green_bg"
-                        android:text="Send"
-                        android:textColor="@color/white" />
+                        android:dateTextAppearance="@style/CalenderViewDateCustomText"
+                        android:focusedMonthDateColor="@color/about_title"
+                        android:theme="@style/CalenderViewCustom"
+                        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
                 </LinearLayout>
+
+                <Button
+                    android:id="@+id/book_pack_req_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/round_green_bg"
+                    android:text="Book"
+                    android:textColor="@color/white" />
 
                 <View
                     android:layout_width="match_parent"

@@ -296,6 +296,7 @@
     <string name="txt_reviews">Reviews</string>
     <string name="request_enquiry">Request Enquiry</string>
     <string name="book_tour">Book Tour</string>
+    <string name="book_pack">Book Package</string>
     <!--if you want rtl change value of isRTL to true else false-->
     <string name="isRTL">false</string>
 
@@ -354,7 +355,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="send_enq_title">Send Enquiry</string>
+    <string name="book_tour_title">Book Tour</string>
+    <string name="dp_book_title">DP Booking</string>
+    <string name="package_booking">Package Booking</string>
+
+
     <string name="mJSONURL_addflexidp"> http://shivedic.in/cokarma/JSON/flexidporder.php</string>
     <string name="mJSONURL_propertydetails">http://shivedic.in/cokarma/JSON/property_detail.php</string>
-
+    <string name="mJSONURL_sendenquiry"> http://shivedic.in/cokarma/JSON/send_enquiry.php</string>
 </resources>

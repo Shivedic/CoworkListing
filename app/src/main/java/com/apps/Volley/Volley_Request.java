@@ -115,6 +115,8 @@ public class Volley_Request {
                         MainActivity.locationResponse(responseString);
                     else if(returnPathCopy =="searchVal")
                         SearchActivity.searchResponse(responseString);
+                    else if(returnPathCopy =="SendEnquiry")
+                        PropertyView.sendEnquiryResp(responseString);
             }
             }, new Response.ErrorListener() {
                 @Override

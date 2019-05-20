@@ -34,7 +34,7 @@ public void onBindViewHolder(ItemRowHolder holder, final int position) {
     holder.userName.setText(dataList.get(position).getUserName());
     holder.reviewDate.setText(dataList.get(position).getDate());
     holder.reviewDesc.setText(dataList.get(position).getDesc());
-    holder.reviewResp.setText(dataList.get(position).getResponse());
+    holder.reviewResp.setText("@RESPONSE : " + dataList.get(position).getResponse());
     holder.ratingView.setRating(Float.parseFloat(dataList.get(position).getTag()));
 
 }

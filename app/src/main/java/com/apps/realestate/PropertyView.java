@@ -4,9 +4,11 @@ package com.apps.realestate;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -25,7 +27,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
@@ -35,6 +39,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,18 +61,31 @@ import com.github.ornolfr.ratingview.RatingView;
 import com.google.gson.JsonObject;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+import com.stacktips.view.CalendarListener;
+import com.stacktips.view.CustomCalendarView;
+import com.stacktips.view.DayDecorator;
+import com.stacktips.view.DayView;
+import com.stacktips.view.utils.CalendarUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.internal.ListenerClass;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
+import static com.apps.realestate.SignInActivity.mypreference;
 
 public class PropertyView extends AppCompatActivity {
 
@@ -98,13 +116,14 @@ public class PropertyView extends AppCompatActivity {
     static FrameLayout containerAmenities;
     static Button enquiryBtn;
     static Button tourBtn;
+    static private Dialog tempDialog;
 
     //Package
     private static ExpandableListView expandableListView;
     private static ExpandableListViewAdapter expandableListViewAdapter;
     private static List<String> typeDataGroup = new ArrayList<>();
     private static HashMap<String, List<Package>> listDataChild = new HashMap<>();
-
+private static Date date1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,6 +190,23 @@ mReviewList = new ArrayList<>();
         enquiryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences = getSharedPreferences("realEstate", 0);
+                MyApplication ma = MyApplication.getInstance();
+                if(!ma.getIsLogin()){
+                    new SweetAlertDialog(mActivity, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("You are not logged in")
+                            .setContentText("Kindly login to proceed")
+                            .setConfirmText("Sure!")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    Intent i = new Intent(PropertyView.this, SignInActivity.class);
+                                    startActivity(i);
+                                }
+                            })
+                            .show();
+                } else
                 showEnquiry();
             }
         });
@@ -178,7 +214,47 @@ mReviewList = new ArrayList<>();
         tourBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTour();
+                SharedPreferences preferences = getSharedPreferences("realEstate", 0);
+                MyApplication ma = MyApplication.getInstance();
+                if(!ma.getIsLogin()){
+                    new SweetAlertDialog(mActivity, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("You are not logged in")
+                            .setContentText("Kindly login to proceed")
+                            .setConfirmText("Sure!")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    Intent i = new Intent(PropertyView.this, SignInActivity.class);
+                                    startActivity(i);
+                                }
+                            })
+                            .show();
+                } else
+                    showTour();
+            }
+        });
+
+        findViewById(R.id.btn_book_pack).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyApplication ma = MyApplication.getInstance();
+                if(!ma.getIsLogin()){
+                    new SweetAlertDialog(mActivity, SweetAlertDialog.WARNING_TYPE)
+                            .setTitleText("You are not logged in")
+                            .setContentText("Kindly login to proceed")
+                            .setConfirmText("Sure!")
+                            .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
+                                    sDialog.dismissWithAnimation();
+                                    Intent i = new Intent(PropertyView.this, SignInActivity.class);
+                                    startActivity(i);
+                                }
+                            })
+                            .show();
+                } else
+                    bookPack();
             }
         });
 
@@ -705,14 +781,43 @@ mReviewList = new ArrayList<>();
 
     private void showEnquiry() {
         final Dialog mDialog = new Dialog(mActivity, R.style.Theme_AppCompat_Translucent);
+        tempDialog = mDialog;
         mDialog.setContentView(R.layout.reqest_enq_dailog);
         jsonUtils = new JsonUtils(PropertyView.mActivity);
         jsonUtils.forceRTLIfSupported(mActivity.getWindow());
         TextView tv = (TextView)mDialog.findViewById(R.id.enq_label);
         tv.setText("Message");
-        EditText et = (EditText) mDialog.findViewById(R.id.enquiry_text);
+        final EditText et = (EditText) mDialog.findViewById(R.id.enquiry_text);
         et.setSelection(0);
+        final MyApplication myApplication = MyApplication.getInstance();
+        mDialog.findViewById(R.id.send_enq_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String req = "{\"uid\":\"" + myApplication.getUserId() + "\",\"user_name\":\"" + myApplication.getUserName() + "\",\"user_email\":\"" + myApplication.getUserEmail() + "\",\"pid\":\"" + Id + "\",\"e_request\":\"" + et.getText().toString() + "\"}";
+                Volley_Request postRequest = new Volley_Request();
+                postRequest.createRequest(mActivity, mActivity.getResources().getString(R.string.mJSONURL_sendenquiry), "POST", "SendEnquiry", req);
+
+            }
+        });
+        ImageView image_fil_close = mDialog.findViewById(R.id.image_fil_close);
+        image_fil_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
         mDialog.show();
+    }
+
+    public static void sendEnquiryResp(String response){
+        try{
+          JSONObject jo = new JSONObject(response);
+          if(jo.getString("msg").equals("Successfully Inserted")){
+                           Log.d("myTag", "successfull enquiry");}
+          else {}
+        } catch (JSONException e ) {
+
+        }
     }
 
     private void showTour() {
@@ -720,12 +825,136 @@ mReviewList = new ArrayList<>();
         mDialog.setContentView(R.layout.book_tour_dailog);
         jsonUtils = new JsonUtils(PropertyView.mActivity);
         jsonUtils.forceRTLIfSupported(mActivity.getWindow());
+        CustomCalendarView calendarView  = (CustomCalendarView) mDialog.findViewById(R.id.tour_calendar);
+//Initialize calendar with date
+        Calendar currentCalendar = Calendar.getInstance(Locale.getDefault());
+
+        //Show monday as first date of week
+        calendarView.setFirstDayOfWeek(Calendar.MONDAY);
+
+        //Show/hide overflow days of a month
+        calendarView.setShowOverflowDate(false);
+
+        //call refreshCalendar to update calendar the view
+        calendarView.refreshCalendar(currentCalendar);
+
+        //Handling custom calendar events
+        calendarView.setCalendarListener(new CalendarListener() {
+            @Override
+            public void onDateSelected(Date date) {
+                if (!CalendarUtils.isPastDay(date)) {
+                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+                    Log.d("myTag","Selected date is " + df.format(date));
+                } else {
+                    Log.d("myTag","Selected date is disabled!");
+                }
+            }
+
+            @Override
+            public void onMonthChanged(Date date) {
+                SimpleDateFormat df = new SimpleDateFormat("MM-yyyy");
+                Toast.makeText(mActivity, df.format(date), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //adding calendar day decorators
+        List<DayDecorator> decorators = new ArrayList<>();
+        decorators.add(new DisabledColorDecorator());
+        calendarView.setDecorators(decorators);
+        calendarView.refreshCalendar(currentCalendar);
+
+
+
+
+        //String date  = String.valueOf(cv.getDate());
+        mDialog.findViewById(R.id.book_tour_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        ImageView image_fil_close = mDialog.findViewById(R.id.image_fil_close);
+        image_fil_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
+        //TextView tv = (TextView)mDialog.findViewById(R.id.enq_label);
+        //tv.setText("Message");
+        //EditText et = (EditText) mDialog.findViewById(R.id.enquiry_text);
+        //et.setSelection(0);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        try {
+            date1 = sdf.parse("26-05-2019");
+        }catch (ParseException e){Log.d("myTag", "date parse exception", e);}
+        mDialog.show();
+    }
+
+    private class DisabledColorDecorator implements DayDecorator {
+        @Override
+        public void decorate(DayView dayView) {
+            if (CalendarUtils.isPastDay(dayView.getDate()) ) {
+                int color = Color.parseColor("#a9afb9");
+                dayView.setBackgroundColor(color);
+            } else {
+                Calendar c = Calendar.getInstance();
+                c.setTime(dayView.getDate());
+                if(c.get(Calendar.DAY_OF_WEEK) == 6) {
+                    int color = Color.parseColor("#a9afb9");
+                    dayView.setBackgroundColor(color);
+                }
+            }
+        }
+    }
+
+    private void bookPack() {
+        final Dialog mDialog = new Dialog(mActivity, R.style.Theme_AppCompat_Translucent);
+        mDialog.setContentView(R.layout.book_pack_dialog);
+        jsonUtils = new JsonUtils(PropertyView.mActivity);
+        jsonUtils.forceRTLIfSupported(mActivity.getWindow());
+
+        Spinner sp = (Spinner) mDialog.findViewById(R.id.pack_spinner);
+        ArrayList<String> packTitle = new ArrayList<>();
+        List<Package> pL = listDataChild.get("flexi");
+        pL.addAll(listDataChild.get("fixed"));
+        pL.addAll(listDataChild.get("office"));
+        for (Package p:pL
+                ) {
+            packTitle.add(p.getName() + " - " + p.getCategory());
+        }
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<String>(getApplicationContext(),  android.R.layout.simple_spinner_dropdown_item, packTitle);
+        adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+
+        sp.setAdapter(adapter);
+
+
+
+        CalendarView cv  = (CalendarView) mDialog.findViewById(R.id.tour_calendar);
+        String date  = String.valueOf(cv.getDate());
+        mDialog.findViewById(R.id.book_pack_req_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        ImageView image_fil_close = mDialog.findViewById(R.id.image_fil_close);
+        image_fil_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDialog.dismiss();
+            }
+        });
         //TextView tv = (TextView)mDialog.findViewById(R.id.enq_label);
         //tv.setText("Message");
         //EditText et = (EditText) mDialog.findViewById(R.id.enquiry_text);
         //et.setSelection(0);
         mDialog.show();
     }
+
 
     private static void setListViewHeight(ExpandableListView listView,
                                    int group) {

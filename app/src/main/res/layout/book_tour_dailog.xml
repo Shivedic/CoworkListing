@@ -49,7 +49,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginStart="5dp"
                         android:layout_toEndOf="@+id/id_fil"
-                        android:text="@string/advance_filter_title"
+                        android:text="@string/book_pack"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
 
@@ -96,14 +96,12 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@color/main_green_stroke_color">
 
-                    <CalendarView
-                        android:id="@+id/calendarView"
+                    <com.stacktips.view.CustomCalendarView
+                        android:id="@+id/tour_calendar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:dateTextAppearance="@style/CalenderViewDateCustomText"
-                        android:focusedMonthDateColor="@color/about_title"
-                        android:theme="@style/CalenderViewCustom"
-                        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText" />
+                        android:background="@color/white_with_alpha">
+                    </com.stacktips.view.CustomCalendarView>
                 </LinearLayout>
 
                 <Button
@@ -113,7 +111,8 @@
                     android:layout_margin="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/round_green_bg"
-                    android:text="Book" />
+                    android:text="Book"
+                    android:textColor="@color/white" />
 
                 <View
                     android:layout_width="match_parent"

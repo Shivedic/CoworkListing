@@ -199,7 +199,7 @@ public class SignInActivity extends AppCompatActivity implements Validator.Valid
                     JSONObject objJson;
                     for (int i = 0; i < jsonArray.length(); i++) {
                         objJson = jsonArray.getJSONObject(i);
-                        if (objJson.has(Constant.MSG)) {
+                        if (!objJson.has(Constant.MSG)) {
                             strMessage = objJson.getString(Constant.MSG);
                             Constant.GET_SUCCESS_MSG = objJson.getInt(Constant.SUCCESS);
                         } else {

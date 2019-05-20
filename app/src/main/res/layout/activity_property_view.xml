@@ -659,6 +659,30 @@
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/list_line_detail_gradient" />
 
+
+                            <View
+                                android:layout_width="40dp"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@color/orange" />
+
+                            <Button
+                                android:id="@+id/btn_book_pack"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:background="@drawable/round_green_bg"
+                                android:text="@string/book_pack" />
+
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:background="@drawable/list_line_detail_gradient" />
+
                         </LinearLayout>
                     </android.support.v7.widget.CardView>
 
