@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -37,11 +38,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.apps.Volley.Volley_Request;
 import com.bumptech.glide.Glide;
@@ -89,6 +92,9 @@ import static com.apps.realestate.SignInActivity.mypreference;
 
 public class PropertyView extends AppCompatActivity {
 
+    Button clk;
+    VideoView videov;
+    MediaController mediac;
     public static Activity mActivity;
     static ImageView imageFloor, imageMap, imageCall, imageRating,image_rate_close;
     static TextView txtName, txtAddress, txtPrice, txtBed, txtBath, txtArea, txtPhone, txtAmenities, txtOffers;
@@ -123,7 +129,7 @@ public class PropertyView extends AppCompatActivity {
     private static ExpandableListViewAdapter expandableListViewAdapter;
     private static List<String> typeDataGroup = new ArrayList<>();
     private static HashMap<String, List<Package>> listDataChild = new HashMap<>();
-private static Date date1;
+    private static Date date1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,6 +138,9 @@ private static Date date1;
         Volley_Request postRequest = new Volley_Request();
         postRequest.createRequest(getApplicationContext(), getResources().getString(R.string.mJSONURL_propertydetails), "POST", "propdetail", req);
         setContentView(R.layout.activity_property_view);
+        clk = (Button)findViewById(R.id.play);
+        videov = (VideoView)findViewById(R.id.videoview);
+        mediac = new MediaController(this);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -154,7 +163,7 @@ private static Date date1;
         mGallery = new ArrayList<>();
         mAmenities = new ArrayList<>();
         mOffers = new ArrayList<>();
-mReviewList = new ArrayList<>();
+        mReviewList = new ArrayList<>();
         image_fur = findViewById(R.id.image_fur);
         textFur = findViewById(R.id.textFur);
         image_very = findViewById(R.id.image_very);
@@ -187,6 +196,12 @@ mReviewList = new ArrayList<>();
         expandableListView = findViewById(R.id.expandableListPack);
         enquiryBtn = findViewById(R.id.enquiry_btn);
         tourBtn = findViewById(R.id.btn_book_tour);
+        clk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                videoplay();
+            }
+        });
         enquiryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,7 +222,7 @@ mReviewList = new ArrayList<>();
                             })
                             .show();
                 } else
-                showEnquiry();
+                    showEnquiry();
             }
         });
 
@@ -315,6 +330,16 @@ mReviewList = new ArrayList<>();
         });
     }
 
+    public void videoplay()
+    {
+            String path = "android.resource://com.apps.realestate/"+R.raw.video;
+            Uri uri = Uri.parse(path);
+            videov.setVideoURI(uri);
+            videov.setMediaController(mediac);
+            mediac.setAnchorView(videov);
+            videov.start();
+    }
+
     @SuppressLint("StaticFieldLeak")
     private class getProperty extends AsyncTask<String, Void, String> {
 
@@ -416,7 +441,7 @@ mReviewList = new ArrayList<>();
 
                     JSONArray amenitiesArray = objectJson.getJSONArray("amenities");
                     for(int i=0; i < amenitiesArray.length(); i++) {
-                    JSONObject amenitiesJSON = amenitiesArray.getJSONObject(0);
+                        JSONObject amenitiesJSON = amenitiesArray.getJSONObject(0);
 
                         Iterator<String> keys = amenitiesJSON.keys();
 
@@ -429,7 +454,7 @@ mReviewList = new ArrayList<>();
                         }
                     }
 
-                        JSONArray jsonArrayGallery = objJson.getJSONArray(Constant.GALLERY_ARRAY_NAME);
+                    JSONArray jsonArrayGallery = objJson.getJSONArray(Constant.GALLERY_ARRAY_NAME);
                     if (jsonArrayGallery.length() != 0) {
                         for (int j = 0; j < jsonArrayGallery.length(); j++) {
                             JSONObject objChild = jsonArrayGallery.getJSONObject(j);
@@ -447,7 +472,7 @@ mReviewList = new ArrayList<>();
                     e.printStackTrace();
                     Log.d("myTag", " error ", e);
                 }
-               // setResult();
+                // setResult();
             }
         }
     }
@@ -584,9 +609,9 @@ mReviewList = new ArrayList<>();
                     while (keys.hasNext()) {
                         String key = keys.next();
                         //Log.d("myTag", "value : " + key + " : " + amenitiesJSON.get(key));
-                            offers += offersJSON.get(key);
-                            offers += ",";
-                            // do something with jsonObject here
+                        offers += offersJSON.get(key);
+                        offers += ",";
+                        // do something with jsonObject here
                     }
                 }
                 offers = offers.substring(0, offers.length() - 1);
@@ -811,10 +836,10 @@ mReviewList = new ArrayList<>();
 
     public static void sendEnquiryResp(String response){
         try{
-          JSONObject jo = new JSONObject(response);
-          if(jo.getString("msg").equals("Successfully Inserted")){
-                           Log.d("myTag", "successfull enquiry");}
-          else {}
+            JSONObject jo = new JSONObject(response);
+            if(jo.getString("msg").equals("Successfully Inserted")){
+                Log.d("myTag", "successfull enquiry");}
+            else {}
         } catch (JSONException e ) {
 
         }
@@ -922,7 +947,7 @@ mReviewList = new ArrayList<>();
         pL.addAll(listDataChild.get("fixed"));
         pL.addAll(listDataChild.get("office"));
         for (Package p:pL
-                ) {
+        ) {
             packTitle.add(p.getName() + " - " + p.getCategory());
         }
         ArrayAdapter<String> adapter =
@@ -957,7 +982,7 @@ mReviewList = new ArrayList<>();
 
 
     private static void setListViewHeight(ExpandableListView listView,
-                                   int group) {
+                                          int group) {
         ExpandableListAdapter listAdapter = (ExpandableListAdapter) listView.getExpandableListAdapter();
         int totalHeight = 0;
         int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(),
